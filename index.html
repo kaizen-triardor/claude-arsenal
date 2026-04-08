@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Claude Code Arsenal</title>
+  <title>Kaizen's Claude Code Arsenal</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -74,8 +74,8 @@
         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
       </div>
       <div>
-        <h1 class="text-xl font-bold text-white">Claude Code Arsenal</h1>
-        <p class="text-xs text-gray-400">Complete capability reference</p>
+        <h1 class="text-xl font-bold text-white">Kaizen's Claude Code Arsenal</h1>
+        <p class="text-xs text-gray-400 italic">"The impediment to action advances action. What stands in the way becomes the way." &mdash; Marcus Aurelius</p>
       </div>
     </div>
     <div class="flex items-center gap-3">
@@ -267,7 +267,7 @@
 </div>
 
 <footer class="text-center py-8 text-xs text-gray-500">
-  Claude Code Arsenal &middot; Last updated <span id="build-date"></span> &middot; <a href="https://github.com/kaizen-triardor" class="text-claude-400 hover:underline">kaizen-triardor</a>
+  Kaizen's Claude Code Arsenal &middot; Last updated <span id="build-date"></span>
 </footer>
 
 <script>
@@ -280,23 +280,23 @@ mcpServers: [
   {id:'github',name:'GitHub',desc:'Full GitHub API: create issues, PRs, search repos, manage code, review PRs, fork repos.',category:'integration',tools:32,
    guide:'GitHub MCP gives you full programmatic access to GitHub without leaving the conversation.\n\n**Best uses:**\n- Search code across all public repos\n- Create/review/merge pull requests\n- Manage issues and project boards\n- Fork repos and push changes\n\n**How to trigger:** Just mention GitHub operations naturally. "Search GitHub for React auth libraries" or "Create a PR for this branch."\n\n**Pro tip:** Use `gh` CLI via Bash for complex queries, but MCP is better for structured operations like creating PRs with proper formatting.'},
   {id:'claude-historian-mcp',name:'Claude Historian',desc:'Search and browse your Claude Code conversation history. Find past solutions, decisions, and patterns.',category:'memory',tools:7,
-   guide:'Claude Historian indexes your past Claude Code sessions for semantic search.\n\n**Best uses:**\n- "How did we fix the auth bug last week?"\n- Find tool usage patterns across sessions\n- Extract summaries from long sessions\n- Locate error solutions from prior conversations\n\n**How to trigger:** Ask about past work. "Search my history for database migration issues" or "What did we do in the last ZOPMAX session?"\n\n**Pro tip:** Combine with MemPalace for comprehensive recall. Historian searches raw transcripts, MemPalace searches structured memories.'},
+   guide:'Claude Historian indexes your past Claude Code sessions for semantic search.\n\n**Best uses:**\n- "How did we fix the auth bug last week?"\n- Find tool usage patterns across sessions\n- Extract summaries from long sessions\n- Locate error solutions from prior conversations\n\n**How to trigger:** Ask about past work. "Search my history for database migration issues" or "What did we do in the last your project session?"\n\n**Pro tip:** Combine with MemPalace for comprehensive recall. Historian searches raw transcripts, MemPalace searches structured memories.'},
   {id:'ccusage',name:'CCUsage',desc:'Track Claude Code API token usage, costs, and analytics. Daily/monthly breakdowns, session stats.',category:'tokens',tools:5,
    guide:'CCUsage gives you real-time visibility into your Claude API consumption.\n\n**Best uses:**\n- Track daily token usage and costs\n- Compare usage across time periods (RTK savings)\n- Monitor per-session token consumption\n- Monthly cost projections\n\n**Commands:** `mcp__ccusage__daily`, `mcp__ccusage__monthly`, `mcp__ccusage__session`\n\n**Pro tip:** Run daily checks to catch token-heavy patterns. Compare pre/post RTK baselines to quantify savings.'},
   {id:'playwright',name:'Playwright',desc:'Browser automation: navigate pages, click elements, fill forms, take screenshots, evaluate JS. Headless mode.',category:'automation',tools:20,
-   guide:'Playwright gives Claude real browser capabilities for testing and web interaction.\n\n**Best uses:**\n- E2E testing of web apps during development\n- Taking screenshots for visual verification\n- Filling forms and testing user flows\n- Extracting data from dynamic web pages\n- Debugging UI issues with live snapshots\n\n**How to trigger:** "Open localhost:3010 and test the login flow" or "Take a screenshot of the dashboard."\n\n**Pro tip:** Use `browser_snapshot` for accessibility-tree based interaction (faster, more reliable than screenshots). Chain navigation + assertions for automated testing.'},
+   guide:'Playwright gives Claude real browser capabilities for testing and web interaction.\n\n**Best uses:**\n- E2E testing of web apps during development\n- Taking screenshots for visual verification\n- Filling forms and testing user flows\n- Extracting data from dynamic web pages\n- Debugging UI issues with live snapshots\n\n**How to trigger:** "Open localhost:&lt;port&gt; and test the login flow" or "Take a screenshot of the dashboard."\n\n**Pro tip:** Use `browser_snapshot` for accessibility-tree based interaction (faster, more reliable than screenshots). Chain navigation + assertions for automated testing.'},
   {id:'memory',name:'Memory (Knowledge Graph)',desc:'Persistent entity-relationship knowledge graph. Store facts, create relationships, search across sessions.',category:'memory',tools:10,
-   guide:'The Memory MCP stores structured knowledge as entities and relationships in a persistent graph.\n\n**Best uses:**\n- Track entities: people, projects, technologies, decisions\n- Map relationships between concepts\n- Build up project knowledge over time\n- Query "what do I know about X?"\n\n**How it differs from file memory:** File memory (MEMORY.md) is curated narrative. This is structured triples (Entity → Relation → Entity).\n\n**How it differs from MemPalace:** MemPalace stores verbatim conversations. This stores distilled facts.\n\n**Pro tip:** Use for persistent facts that span projects. "Kaizen uses Next.js 16 for ZOPMAX" type knowledge.'},
+   guide:'The Memory MCP stores structured knowledge as entities and relationships in a persistent graph.\n\n**Best uses:**\n- Track entities: people, projects, technologies, decisions\n- Map relationships between concepts\n- Build up project knowledge over time\n- Query "what do I know about X?"\n\n**How it differs from file memory:** File memory (MEMORY.md) is curated narrative. This is structured triples (Entity → Relation → Entity).\n\n**How it differs from MemPalace:** MemPalace stores verbatim conversations. This stores distilled facts.\n\n**Pro tip:** Use for persistent facts that span projects. "Kaizen uses Next.js 16 for your project" type knowledge.'},
   {id:'sequential-thinking',name:'Sequential Thinking',desc:'Step-by-step reasoning for complex problems. Structured thought chains with revision capability.',category:'development',tools:1,
    guide:'Sequential Thinking forces structured, step-by-step reasoning for complex problems.\n\n**Best uses:**\n- Architecture decisions with many tradeoffs\n- Debugging multi-step issues\n- Planning complex migrations\n- Any problem where jumping to a solution is risky\n\n**How to trigger:** "Think through this step by step" or for complex problems, it may be invoked automatically.\n\n**Pro tip:** Best for problems with dependencies between decisions. For simpler problems, direct reasoning is faster.'},
   {id:'filesystem',name:'Filesystem',desc:'Direct filesystem access: read, write, search, create directories, get file info, list with sizes.',category:'core',tools:14,
    guide:'Filesystem MCP provides direct file operations beyond what the built-in Read/Write/Glob tools offer.\n\n**Best uses:**\n- Read files outside the project directory\n- Get file sizes and metadata\n- Create directory structures\n- Move/rename files\n- Read media files (images)\n\n**When to use vs built-in:** Built-in tools (Read, Write, Edit) are preferred for project files. Filesystem MCP is for operations outside the working directory or for metadata queries.\n\n**Pro tip:** Use `list_directory_with_sizes` to quickly identify large files eating disk space.'},
-  {id:'phoenix',name:'Phoenix (Arize)',desc:'LLM observability: trace API calls, debug pipelines, monitor spans, view annotations. Runs on localhost:6006.',category:'development',tools:25,
-   guide:'Phoenix provides production-grade LLM observability for debugging AI pipelines.\n\n**Best uses:**\n- Trace LexArdor LLM calls end-to-end\n- Debug slow or failed model responses\n- Monitor retrieval quality (RAG pipelines)\n- A/B test prompt variations\n- Track model performance over time\n\n**Setup:** Runs on localhost:6006. Connect your Python code with `phoenix.launch_app()`.\n\n**Pro tip:** Essential for LexArdor development. Trace retrieval→reranking→generation to find quality bottlenecks.'},
+  {id:'phoenix',name:'Phoenix (Arize)',desc:'LLM observability: trace API calls, debug pipelines, monitor spans, view annotations. Runs locally.',category:'development',tools:25,
+   guide:'Phoenix provides production-grade LLM observability for debugging AI pipelines.\n\n**Best uses:**\n- Trace your AI project LLM calls end-to-end\n- Debug slow or failed model responses\n- Monitor retrieval quality (RAG pipelines)\n- A/B test prompt variations\n- Track model performance over time\n\n**Setup:** Runs locally. Connect your Python code with `phoenix.launch_app()`.\n\n**Pro tip:** Essential for LLM/RAG projects. Trace retrieval→reranking→generation to find quality bottlenecks.'},
   {id:'context7',name:'Context7',desc:'Fetch up-to-date library documentation. Always-current docs for React, Next.js, Prisma, any framework.',category:'research',tools:2,
    guide:'Context7 fetches live documentation for any library, framework, or tool.\n\n**Best uses:**\n- Look up API syntax for any library\n- Check latest version migration guides\n- Verify configuration options\n- Get examples for unfamiliar APIs\n\n**How to trigger:** Automatic when you ask about libraries. "How do I use Prisma transactions?" or "What\'s the Next.js 16 app router API?"\n\n**Why it matters:** Your training data may be outdated. Context7 ensures you get current docs, not stale knowledge.\n\n**Pro tip:** Always prefer this over web search for library documentation. It\'s faster and more structured.'},
   {id:'mempalace',name:'MemPalace',desc:'Long-term verbatim memory with palace structure. Wings (projects), rooms (topics), halls (memory types). 96.6% recall.',category:'memory',tools:19,new:true,
-   guide:'MemPalace stores verbatim conversation data in a searchable palace structure.\n\n**Architecture:**\n- Wings = Projects (ZOPMAX, LexArdor, SmokHot)\n- Rooms = Topics (auth, database, UI)\n- Halls = Memory types (facts, events, discoveries, preferences)\n\n**Best uses:**\n- "Why did we make this decision 3 months ago?"\n- Cross-project knowledge recall\n- Finding forgotten solutions\n- Building specialist agent diaries\n\n**How it differs:** File memory = curated current state. Knowledge Graph = structured facts. MemPalace = verbatim historical recall.\n\n**Pro tip:** Start with MCP-only (no hooks). Mine your Claude conversation exports first. Use raw mode, not AAAK compression.'},
+   guide:'MemPalace stores verbatim conversation data in a searchable palace structure.\n\n**Architecture:**\n- Wings = Projects (your project, your AI project, your web project)\n- Rooms = Topics (auth, database, UI)\n- Halls = Memory types (facts, events, discoveries, preferences)\n\n**Best uses:**\n- "Why did we make this decision 3 months ago?"\n- Cross-project knowledge recall\n- Finding forgotten solutions\n- Building specialist agent diaries\n\n**How it differs:** File memory = curated current state. Knowledge Graph = structured facts. MemPalace = verbatim historical recall.\n\n**Pro tip:** Start with MCP-only (no hooks). Mine your Claude conversation exports first. Use raw mode, not AAAK compression.'},
   {id:'reactbits',name:'ReactBits',desc:'React component library: browse, search, and get production-ready UI components with demos.',category:'creative',tools:5,
    guide:'ReactBits provides a searchable library of React UI components.\n\n**Best uses:**\n- Find ready-made components instead of building from scratch\n- Get component demos and usage examples\n- Browse by category (buttons, modals, cards, etc.)\n- Copy production-ready component code\n\n**How to trigger:** "Find me a React accordion component" or "Show me ReactBits card components."\n\n**Pro tip:** Great for rapid prototyping. Search before building custom components.'},
   {id:'serena',name:'Serena',desc:'Semantic code analysis: find symbols, navigate references, rename across codebase, read function bodies intelligently.',category:'development',tools:18,
@@ -306,11 +306,11 @@ mcpServers: [
   {id:'notion',name:'Notion',desc:'Workspace management: create pages/databases, search content, manage comments, organize information.',category:'integration',tools:14,
    guide:'Notion MCP provides full Notion workspace access.\n\n**Best uses:**\n- Create project documentation pages\n- Search across your Notion workspace\n- Update database entries programmatically\n- Manage task tracking databases\n- Create structured knowledge bases\n\n**How to trigger:** "Create a Notion page for the sprint plan" or "Search Notion for the API design doc."\n\n**Pro tip:** Great for creating shareable documentation that non-technical stakeholders can access.'},
   {id:'gmail',name:'Gmail',desc:'Email integration: read, send, and manage emails through your Gmail account.',category:'integration',tools:1,
-   guide:'Gmail MCP connects your email for programmatic access.\n\n**Best uses:**\n- Send formatted emails to clients\n- Read and summarize email threads\n- Draft responses to technical inquiries\n- Automated email workflows\n\n**Pro tip:** Requires authentication. Use for client communication workflows, especially for ZOPMAX/SmokHot client updates.'},
+   guide:'Gmail MCP connects your email for programmatic access.\n\n**Best uses:**\n- Send formatted emails to clients\n- Read and summarize email threads\n- Draft responses to technical inquiries\n- Automated email workflows\n\n**Pro tip:** Requires authentication. Use for client communication workflows and automated email responses.'},
   {id:'google-calendar',name:'Google Calendar',desc:'Calendar management: create events, check availability, manage schedules.',category:'integration',tools:1,
-   guide:'Google Calendar MCP for schedule management.\n\n**Best uses:**\n- Create meeting events\n- Check availability\n- Schedule sprint reviews and deadlines\n- Block focus time\n\n**Pro tip:** Planned for LexArdor Radni Prostor integration (Phase 5).'},
+   guide:'Google Calendar MCP for schedule management.\n\n**Best uses:**\n- Create meeting events\n- Check availability\n- Schedule sprint reviews and deadlines\n- Block focus time\n\n**Pro tip:** Great for scheduling sprint reviews, client meetings, and deadline reminders.'},
   {id:'hugging-face',name:'Hugging Face',desc:'AI model hub: search models/datasets/papers, get repo details, explore spaces.',category:'research',tools:7,
-   guide:'Hugging Face MCP provides access to the world\'s largest AI model repository.\n\n**Best uses:**\n- Search for models by task (text generation, classification)\n- Find datasets for training/evaluation\n- Search AI research papers\n- Get model details and documentation\n- Explore HF Spaces for demos\n\n**How to trigger:** "Search Hugging Face for Serbian language models" or "Find papers about RAG optimization."\n\n**Pro tip:** Essential for LexArdor model research. Use paper_search to find state-of-the-art techniques.'},
+   guide:'Hugging Face MCP provides access to the world\'s largest AI model repository.\n\n**Best uses:**\n- Search for models by task (text generation, classification)\n- Find datasets for training/evaluation\n- Search AI research papers\n- Get model details and documentation\n- Explore HF Spaces for demos\n\n**How to trigger:** "Search Hugging Face for Serbian language models" or "Find papers about RAG optimization."\n\n**Pro tip:** Essential for your AI project model research. Use paper_search to find state-of-the-art techniques.'},
   {id:'coupler-io',name:'Coupler.io',desc:'Data synchronization between apps, spreadsheets, and databases.',category:'integration',tools:1,
    guide:'Coupler.io syncs data between different services.\n\n**Best uses:**\n- Sync spreadsheet data to databases\n- Automate data pipelines\n- Connect disparate data sources\n\n**Pro tip:** Requires authentication setup.'},
 ],
@@ -339,7 +339,7 @@ skills: [
   {id:'architecture-decision',name:'/architecture-decision',desc:'Create Architecture Decision Records (ADRs) documenting technical decisions and tradeoffs.',category:'development',
    guide:'Documents significant technical decisions for future reference.\n\n**Output:**\n- Context and problem statement\n- Decision drivers\n- Alternatives considered with pros/cons\n- Decision and consequences\n\n**Usage:** `/architecture-decision` when making a tech choice that affects the project long-term\n\n**Pro tip:** Every major technical choice should have an ADR. Future-you will thank present-you.'},
   {id:'estimate',name:'/estimate',desc:'Estimate task effort by analyzing complexity, dependencies, and risk factors.',category:'workflow',
-   guide:'Structured effort estimation with confidence levels.\n\n**Output:**\n- Complexity analysis\n- Dependency mapping\n- Risk factors\n- Effort estimate with confidence ranges\n\n**Usage:** `/estimate Add QR code scanning to ZOPMAX mobile`\n\n**Pro tip:** Use for sprint planning. The confidence ranges are more useful than point estimates.'},
+   guide:'Structured effort estimation with confidence levels.\n\n**Output:**\n- Complexity analysis\n- Dependency mapping\n- Risk factors\n- Effort estimate with confidence ranges\n\n**Usage:** `/estimate Add QR code scanning to your project mobile`\n\n**Pro tip:** Use for sprint planning. The confidence ranges are more useful than point estimates.'},
   {id:'prototype',name:'/prototype',desc:'Rapid prototyping - skip standards to quickly validate a concept. Produces throwaway code + report.',category:'development',
    guide:'Fast concept validation with intentionally relaxed standards.\n\n**What it does:**\n- Builds quick, throwaway implementations\n- Validates game/app concepts\n- Produces a structured prototype report\n- No production standards required\n\n**Usage:** `/prototype` when you need to test an idea fast\n\n**Pro tip:** The output is THROWAWAY code. Never ship prototypes. Use the report to decide if the real implementation is worth building.'},
   // Workflow
@@ -354,10 +354,10 @@ skills: [
   {id:'changelog',name:'/changelog',desc:'Auto-generate changelogs from git commits, sprint data, and design docs.',category:'workflow',
    guide:'Generates changelogs in multiple formats.\n\n**Output:**\n- Internal changelog (detailed, technical)\n- Player/user-facing changelog (friendly, clear)\n\n**Usage:** `/changelog` before releases\n\n**Pro tip:** Good commit messages = good changelogs. Uses git history as primary source.'},
   {id:'patch-notes',name:'/patch-notes',desc:'Generate player-facing patch notes. Translates developer language into clear communication.',category:'workflow',
-   guide:'Converts technical changes into user-friendly patch notes.\n\n**Usage:** `/patch-notes` after preparing a release\n\n**Pro tip:** Essential for ZOPMAX client communication. Translates "fixed N+1 query in inspection loader" into "Inspections now load 3x faster."'},
+   guide:'Converts technical changes into user-friendly patch notes.\n\n**Usage:** `/patch-notes` after preparing a release\n\n**Pro tip:** Essential for your project client communication. Translates "fixed N+1 query in inspection loader" into "Inspections now load 3x faster."'},
   // Automation
   {id:'graphify',name:'/graphify',desc:'Transform code/docs/images into queryable knowledge graphs. 71.5x token reduction on large codebases.',category:'tokens',new:true,
-   guide:'Builds interactive knowledge graphs from your codebase.\n\n**Usage:**\n- `/graphify .` — graph current directory\n- `/graphify ./src --mode deep` — aggressive inference\n- `/graphify query "how does auth connect to the database?"` — query the graph\n- `/graphify path "AuthService" "Database"` — trace connections\n\n**Output:** `graphify-out/graph.html` (interactive), `graph.json` (queryable), `GRAPH_REPORT.md` (audit)\n\n**Always-on mode:** Run `graphify claude install` to have Claude consult the graph before every file search.\n\n**Token savings:** 71.5x on large codebases. Initial build costs tokens, but every subsequent query saves massively.\n\n**Pro tip:** Run on ZOPMAX and LexArdor. The graph persists and only re-processes changed files.'},
+   guide:'Builds interactive knowledge graphs from your codebase.\n\n**Usage:**\n- `/graphify .` — graph current directory\n- `/graphify ./src --mode deep` — aggressive inference\n- `/graphify query "how does auth connect to the database?"` — query the graph\n- `/graphify path "AuthService" "Database"` — trace connections\n\n**Output:** `graphify-out/graph.html` (interactive), `graph.json` (queryable), `GRAPH_REPORT.md` (audit)\n\n**Always-on mode:** Run `graphify claude install` to have Claude consult the graph before every file search.\n\n**Token savings:** 71.5x on large codebases. Initial build costs tokens, but every subsequent query saves massively.\n\n**Pro tip:** Run on your project and your AI project. The graph persists and only re-processes changed files.'},
   {id:'n8n-workflow',name:'/n8n-workflow-automation',desc:'Design n8n workflow JSON with triggers, error handling, retries, and human review queues.',category:'automation',
    guide:'Creates production-ready n8n automation workflows.\n\n**Output:** Complete n8n-importable JSON with:\n- Robust triggers\n- Error handling and retries\n- Idempotency checks\n- Human-in-the-loop review queues\n- Logging\n\n**Usage:** `/n8n-workflow-automation Set up a workflow that monitors GitHub PRs and posts summaries to Slack`\n\n**Pro tip:** Great for automating repetitive DevOps tasks without writing custom code.'},
   {id:'schedule',name:'/schedule',desc:'Create recurring remote agents (triggers) on cron schedules.',category:'automation',
@@ -368,7 +368,7 @@ skills: [
   {id:'brave-search',name:'/brave-search',desc:'Web search via Brave Search API. Lightweight, no browser needed.',category:'research',
    guide:'Fast web search without spinning up a browser.\n\n**Usage:** `/brave-search latest Next.js 16 breaking changes`\n\n**Advantages over Playwright:**\n- No browser overhead\n- Faster results\n- Lower token cost\n- Works for factual queries\n\n**When to use Playwright instead:** When you need to interact with a page, fill forms, or take screenshots.\n\n**Pro tip:** Prefer this for quick factual lookups. Use google-search-browser-use for complex searches that need page interaction.'},
   {id:'google-search',name:'/google-search-browser-use',desc:'Google search via real browser session. Avoids bot blocking, extracts page content.',category:'research',
-   guide:'Real browser-based Google search.\n\n**Usage:** `/google-search-browser-use Serbian fire safety regulations 2026`\n\n**Why this exists:** Some sites block API-based searches. This uses a real browser session.\n\n**Pro tip:** More expensive (spins up Playwright). Use Brave Search first, fall back to this if needed.'},
+   guide:'Real browser-based Google search.\n\n**Usage:** `/google-search-browser-use latest React 19 breaking changes`\n\n**Why this exists:** Some sites block API-based searches. This uses a real browser session.\n\n**Pro tip:** More expensive (spins up Playwright). Use Brave Search first, fall back to this if needed.'},
   // Frontend
   {id:'frontend-design-skill',name:'/frontend-design',desc:'Create distinctive, production-grade frontend interfaces. High design quality, avoids generic AI aesthetics.',category:'creative',
    guide:'The Frontend Design skill creates polished, unique web interfaces.\n\n**What makes it special:**\n- Avoids the "AI-generated" look\n- Creates distinctive visual identities\n- Responsive and accessible\n- Production-ready code\n\n**Usage:** `/frontend-design Create a dashboard for fire inspection management`\n\n**Pro tip:** Provide design references or mood boards for best results. Mention specific aesthetic preferences.'},
@@ -391,7 +391,7 @@ skills: [
   {id:'team-combat',name:'/team-combat',desc:'Full combat feature team: designer, programmer, AI, artist, sound, QA.',category:'creative',
    guide:'Complete combat system development team.\n\n**6 agents:** Game Designer, Gameplay Programmer, AI Programmer, Technical Artist, Sound Designer, QA Tester\n\n**Usage:** `/team-combat` for end-to-end combat feature implementation'},
   {id:'team-release',name:'/team-release',desc:'Release team: release manager, QA lead, DevOps, producer for deployment.',category:'workflow',
-   guide:'Orchestrates the full release process.\n\n**Agents:** Release Manager, QA Lead, DevOps Engineer, Producer\n\n**Usage:** `/team-release` when preparing a deployment\n\n**Pro tip:** Use for ZOPMAX releases. Covers build verification, deployment, and rollback planning.'},
+   guide:'Orchestrates the full release process.\n\n**Agents:** Release Manager, QA Lead, DevOps Engineer, Producer\n\n**Usage:** `/team-release` when preparing a deployment\n\n**Pro tip:** Use for your project releases. Covers build verification, deployment, and rollback planning.'},
   // Project management
   {id:'onboard',name:'/onboard',desc:'Generate onboarding document for new contributors. Summarizes project state, architecture, conventions.',category:'workflow',
    guide:'Creates contextual onboarding docs.\n\n**Output:**\n- Project architecture overview\n- Key conventions and patterns\n- Current priorities and context\n- Getting started steps\n\n**Usage:** `/onboard` for any project area\n\n**Pro tip:** Run when starting work on a project you haven\'t touched in a while. Refreshes your mental model.'},
@@ -400,7 +400,7 @@ skills: [
   {id:'perf-profile',name:'/perf-profile',desc:'Performance profiling workflow. Identifies bottlenecks, measures against budgets, generates optimization recommendations.',category:'development',
    guide:'Structured performance analysis.\n\n**Process:**\n1. Profile the application\n2. Identify bottlenecks\n3. Measure against performance budgets\n4. Generate prioritized optimization recommendations\n\n**Pro tip:** Run before releases. Focus on the top 3 bottlenecks — they usually account for 80% of the slowness.'},
   {id:'release-checklist',name:'/release-checklist',desc:'Pre-release validation: build verification, certification, store metadata, launch readiness.',category:'workflow',
-   guide:'Comprehensive release validation.\n\n**Covers:**\n- Build verification\n- Certification requirements\n- Store metadata\n- Launch readiness checks\n\n**Pro tip:** Use before every ZOPMAX deployment. Catches missed steps.'},
+   guide:'Comprehensive release validation.\n\n**Covers:**\n- Build verification\n- Certification requirements\n- Store metadata\n- Launch readiness checks\n\n**Pro tip:** Use before every deployment. Catches missed steps.'},
   {id:'project-stage',name:'/project-stage-detect',desc:'Analyze project state, detect development stage, identify gaps, recommend next steps.',category:'workflow',
    guide:'Automatically determines where your project is in its lifecycle.\n\n**Output:**\n- Current development stage\n- Gaps and missing artifacts\n- Recommended next steps\n\n**Pro tip:** Run when returning to a project after a break. Instant situational awareness.'},
 ],
@@ -505,7 +505,7 @@ rankings: [
    quickWin:'Already installed. Run `rtk gain` to see cumulative savings. Every git/npm/ls command is automatically optimized.'},
   {rank:3,name:'Graphify',type:'Skill',category:'tokens',score:94,tier:'S',new:true,
    why:'71.5x fewer tokens per codebase query on large projects. Builds persistent knowledge graphs that only re-process changed files. Transforms "search everything" into "navigate the graph."',
-   quickWin:'Run `/graphify .` on ZOPMAX. Then `graphify claude install` for always-on graph-aware navigation.'},
+   quickWin:'Run `/graphify .` on your codebase. Then `graphify claude install` for always-on graph-aware navigation.'},
   {rank:4,name:'Context7',type:'MCP',category:'research',score:92,tier:'S',
    why:'Eliminates stale training data as a failure mode. Every library lookup gets current documentation. Prevents hours of debugging caused by outdated API knowledge.',
    quickWin:'Already active. Automatic when asking about any library. Ensures you never code against a deprecated API.'},
@@ -514,7 +514,7 @@ rankings: [
    quickWin:'Launch 2-3 research agents in parallel instead of sequential searches. Use background mode for non-blocking work.'},
   {rank:6,name:'MemPalace',type:'MCP',category:'memory',score:89,tier:'A',new:true,
    why:'96.6% recall on historical conversations. Fills the critical gap between "what is true now" (file memory) and "why did we decide this" (verbatim history). Cross-project recall.',
-   quickWin:'Mine your Claude conversation exports: `mempalace mine ~/.claude/ --mode convos`. Then search: "Why did we choose Supabase for ZOPMAX?"'},
+   quickWin:'Mine your Claude conversation exports: `mempalace mine ~/.claude/ --mode convos`. Then search for past architectural decisions.'},
   {rank:7,name:'Serena',type:'MCP',category:'development',score:87,tier:'A',
    why:'IDE-level semantic code intelligence. Navigate symbols, find references, rename across codebase. More precise than grep, more efficient than reading full files.',
    quickWin:'Use `find_symbol` + `get_symbols_overview` instead of reading entire files. Rename variables safely across the whole project.'},
@@ -526,7 +526,7 @@ rankings: [
    quickWin:'`find_similar_queries` when you hit a problem you think you\'ve solved before. `get_error_solutions` for recurring errors.'},
   {rank:10,name:'Playwright',type:'MCP',category:'automation',score:83,tier:'A',
    why:'Real browser automation. Test web apps, take screenshots, fill forms, evaluate JS. Essential for E2E testing and visual verification of UI work.',
-   quickWin:'After building UI: "Open localhost:3010 and test the login flow, take screenshots of each step."'},
+   quickWin:'After building UI: "Open localhost and test the login flow, take screenshots of each step."'},
   {rank:11,name:'GitHub MCP',type:'MCP',category:'integration',score:82,tier:'A',
    why:'Full GitHub API without context switching. Create PRs, search code, manage issues, review changes. Keeps your workflow in the terminal.',
    quickWin:'Create PRs directly from conversation. Search code across all public repos for patterns and examples.'},
@@ -535,10 +535,10 @@ rankings: [
    quickWin:'Triggers automatically when you say "build a dashboard" or "create a page." No manual invocation needed.'},
   {rank:13,name:'CCUsage',type:'MCP',category:'tokens',score:78,tier:'B',
    why:'Visibility into token spending. Essential for measuring ROI of RTK and Graphify. Monthly cost tracking prevents budget surprises.',
-   quickWin:'Run weekly to compare against pre-RTK baseline ($54.80/day average). Track the trend.'},
+   quickWin:'Run weekly to compare against pre-RTK baseline (your pre-RTK baseline). Track the trend.'},
   {rank:14,name:'Phoenix (Arize)',type:'MCP',category:'development',score:76,tier:'B',
-   why:'LLM pipeline observability. Critical for LexArdor development — trace retrieval quality, model latency, and generation accuracy.',
-   quickWin:'Connect LexArdor FastAPI to Phoenix. Trace the full RAG pipeline: query → retrieval → reranking → generation.'},
+   why:'LLM pipeline observability. Critical for AI/RAG projects — trace retrieval quality, model latency, and generation accuracy.',
+   quickWin:'Connect your FastAPI/LLM app to Phoenix. Trace the full RAG pipeline: query → retrieval → reranking → generation.'},
   {rank:15,name:'Sequential Thinking',type:'MCP',category:'development',score:75,tier:'B',
    why:'Forces structured reasoning on complex problems. Prevents jumping to wrong conclusions on architecture decisions.',
    quickWin:'Use for any decision with 3+ valid options and tradeoffs that need weighing.'},
@@ -549,8 +549,8 @@ rankings: [
    why:'Component library search. Saves time when building React UIs by finding ready-made components.',
    quickWin:'Search before building any React component from scratch.'},
   {rank:18,name:'Hugging Face',type:'MCP',category:'research',score:69,tier:'C',
-   why:'AI model discovery. Search models, datasets, and papers. Essential for LexArdor model research.',
-   quickWin:'Search for Serbian language models and legal NLP papers.'},
+   why:'AI model discovery. Search models, datasets, and papers. Essential for finding the right model for your use case.',
+   quickWin:'Search for specialized language models and domain-specific NLP papers.'},
   {rank:19,name:'Canva',type:'MCP',category:'creative',score:65,tier:'C',
    why:'Design creation without leaving the terminal. Social media graphics, presentations, marketing materials.',
    quickWin:'Generate social media posts or presentation slides from text content.'},
@@ -576,6 +576,12 @@ rankings: [
 let currentRankFilter = 'all';
 let currentSkillFilter = 'all';
 
+// Security: HTML escape to prevent XSS
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
 function showTab(name) {
   document.querySelectorAll('section[id^="tab-"]').forEach(s => s.classList.add('hidden'));
   document.getElementById('tab-' + name).classList.remove('hidden');
@@ -588,15 +594,16 @@ function showTab(name) {
 function openGuide(item) {
   const m = document.getElementById('modal');
   const b = document.getElementById('modal-body');
-  const guide = (item.guide || 'No guide available.').replace(/\n/g,'<br>').replace(/\*\*(.+?)\*\*/g,'<strong class="text-white">$1</strong>').replace(/`(.+?)`/g,'<code class="mono text-xs bg-surface-700 px-1.5 py-0.5 rounded text-claude-400">$1</code>').replace(/^- /gm,'<span class="text-claude-400 mr-1">&#9656;</span> ');
+  const raw = esc(item.guide || 'No guide available.');
+  const guide = raw.replace(/\n/g,'<br>').replace(/\*\*(.+?)\*\*/g,'<strong class="text-white">$1</strong>').replace(/`(.+?)`/g,'<code class="mono text-xs bg-surface-700 px-1.5 py-0.5 rounded text-claude-400">$1</code>').replace(/^- /gm,'<span class="text-claude-400 mr-1">&#9656;</span> ');
   b.innerHTML = `
     <div class="flex items-center gap-3 mb-4">
       ${item.new ? '<span class="text-xs px-2 py-0.5 rounded bg-green-500/20 text-green-400">NEW</span>' : ''}
       <span class="category-pill cat-${item.category}">${item.category}</span>
       ${item.type ? `<span class="tag">${item.type}</span>` : ''}
     </div>
-    <h2 class="text-xl font-bold text-white mb-1">${item.name}</h2>
-    <p class="text-sm text-gray-400 mb-4">${item.desc}</p>
+    <h2 class="text-xl font-bold text-white mb-1">${esc(item.name)}</h2>
+    <p class="text-sm text-gray-400 mb-4">${esc(item.desc)}</p>
     <div class="border-t border-surface-700/50 pt-4">
       <h3 class="text-sm font-semibold text-claude-400 mb-3">USAGE GUIDE</h3>
       <div class="text-sm text-gray-300 leading-relaxed space-y-1">${guide}</div>
@@ -611,15 +618,15 @@ function cardHTML(item, extra='') {
   return `<div class="glass rounded-xl p-5 card-hover fade-in cursor-pointer" onclick='openGuide(${JSON.stringify(item).replace(/'/g,"\\'")})'>
     <div class="flex items-start justify-between mb-2">
       <div class="flex items-center gap-2 flex-wrap">
-        <h3 class="font-semibold text-white text-sm">${item.name}</h3>
+        <h3 class="font-semibold text-white text-sm">${esc(item.name)}</h3>
         ${item.new ? '<span class="text-[.6rem] px-1.5 py-0.5 rounded bg-green-500/20 text-green-400">NEW</span>' : ''}
       </div>
       <div class="flex items-center gap-1.5">
-        <span class="category-pill cat-${item.category}">${item.category}</span>
-        ${item.tools ? `<span class="tag">${item.tools} tools</span>` : ''}
+        <span class="category-pill cat-${esc(item.category)}">${esc(item.category)}</span>
+        ${item.tools ? `<span class="tag">${esc(String(item.tools))} tools</span>` : ''}
       </div>
     </div>
-    <p class="text-xs text-gray-400 leading-relaxed">${item.desc}</p>
+    <p class="text-xs text-gray-400 leading-relaxed">${esc(item.desc)}</p>
     ${extra}
   </div>`;
 }
@@ -678,12 +685,12 @@ function renderRankings() {
       <div class="rank-badge ${rankClass}">${r.rank}</div>
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 flex-wrap mb-1">
-          <h3 class="font-semibold text-white text-sm">${r.name}</h3>
+          <h3 class="font-semibold text-white text-sm">${esc(r.name)}</h3>
           ${r.new ? '<span class="text-[.6rem] px-1.5 py-0.5 rounded bg-green-500/20 text-green-400">NEW</span>' : ''}
-          <span class="tag">${r.type}</span>
-          <span class="category-pill cat-${r.category}">${r.category}</span>
+          <span class="tag">${esc(r.type)}</span>
+          <span class="category-pill cat-${esc(r.category)}">${esc(r.category)}</span>
         </div>
-        <p class="text-xs text-gray-400 truncate">${r.why.slice(0,120)}...</p>
+        <p class="text-xs text-gray-400 truncate">${esc(r.why.slice(0,120))}...</p>
       </div>
       <div class="flex flex-col items-end gap-1 flex-shrink-0">
         <span class="text-xs font-bold" style="color:${r.tier==='S'?'#ffd700':r.tier==='A'?'#a6e3a1':r.tier==='B'?'#89b4fa':'#cba6f7'}">Tier ${r.tier}</span>
