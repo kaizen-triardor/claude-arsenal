@@ -113,10 +113,11 @@
         </div>
         <div class="flex-1">
           <div class="flex items-center gap-2 mb-2">
-            <h3 class="text-sm font-semibold text-white">What's New — 2026-04-12 (end of day)</h3>
-            <span class="text-[10px] px-2 py-0.5 rounded-full bg-claude-500/20 text-claude-300 font-medium">Framework expansion</span>
+            <h3 class="text-sm font-semibold text-white">What's New — 2026-04-13</h3>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-claude-500/20 text-claude-300 font-medium">Design intelligence added</span>
           </div>
           <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside ml-1">
+            <li><strong class="text-white">UI/UX Pro Max v2.5.0</strong> (NextLevelBuilder) — 67 styles, 96 palettes, 57 font pairings, 99 UX rules, 25 chart types × 13 stacks. Auto-triggers on design prompts. Installed via <code class="mono text-claude-400">npx uipro-cli init --ai claude</code>.</li>
             <li><strong class="text-white">Anthropic skill bundles (17 skills)</strong> — <code class="mono text-claude-400">document-skills:*</code> (pdf/docx/xlsx/pptx) + <code class="mono text-claude-400">example-skills:*</code> (skill-creator, mcp-builder, webapp-testing, brand-guidelines, doc-coauthoring, algorithmic-art, canvas-design, theme-factory, web-artifacts-builder, frontend-design, internal-comms, slack-gif-creator) + <code class="mono text-claude-400">claude-api:*</code>.</li>
             <li><strong class="text-white">code-review-graph</strong> — MCP-backed knowledge graph of the codebase for review. Prefer <code class="mono text-claude-400">semantic_search_nodes</code> / <code class="mono text-claude-400">detect_changes</code> / <code class="mono text-claude-400">get_impact_radius</code> over Grep.</li>
             <li><strong class="text-white">design-audit</strong> skill (local) — 5-mode surgical UI audit: hierarchy, typography, whitespace, color, "why does this look cheap". Invoke <code class="mono text-claude-400">/design-audit</code>.</li>
@@ -369,6 +370,8 @@ plugins: [
    guide:'Invoke: `/design-audit` (all modes) or `/design-audit hierarchy|typography|whitespace|color|cheap`.\n\nBased on @parasmadan.in personas — every finding must name WHICH element and WHAT value to change. No "consider…".\n\n**Pair with:** `example-skills:webapp-testing` to screenshot live URLs first.'},
   {id:'research-scout',url:'local ~/.claude/skills/research-scout',name:'Research Scout (local)',author:'local',version:'1.0',enabled:true,new:true,desc:'Auto-hunt web/Reddit/HN/release feeds for new tools and workflow changes that challenge existing docs. Stages findings with timestamps and source URLs.',category:'research',
    guide:'Invoke: `/research-scout` (one sweep) or pair with `/loop 8h /research-scout` / `/schedule "0 3 * * *" /research-scout`.\n\nDedupes against existing CLAUDE.md/memory before staging. Weekly `/research-scout --promote` review promotes corroborated findings.'},
+  {id:'ui-ux-pro-max',url:'https://github.com/nextlevelbuilder/ui-ux-pro-max-skill',name:'UI/UX Pro Max',author:'NextLevelBuilder',version:'2.5.0',enabled:true,new:true,desc:'AI design intelligence: 67 UI styles, 96 color palettes, 57 font pairings, 99 UX rules, 25 chart types across 13 stacks (React, Next, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn). BM25+regex search.',category:'creative',
+   guide:'Invoke by asking for design guidance — the skill auto-triggers on "design", "style", "palette", "typography", "UX review" prompts. Works via Python search engine at `~/.claude/skills/ui-ux-pro-max/scripts/search.py`.\n\n**Install:** `npx uipro-cli init --ai claude` (already done 2026-04-13).\n\n**Domains:** `product`, `style`, `typography`, `color`, `landing`, `chart`, `ux`.\n\n**Stacks:** `html-tailwind` (default), `react`, `nextjs`, `astro`, `vue`, `nuxtjs`, `svelte`, `swiftui`, `react-native`, `flutter`, `shadcn`, `jetpack-compose`.\n\n**Pro tip:** Pair with `/design-audit` for critique, and `frontend-design` for actual component authoring. UI/UX Pro Max is the *reference*, not a generator.'},
 ],
 
 skills: [
