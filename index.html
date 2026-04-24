@@ -105,7 +105,28 @@
   <!-- OVERVIEW -->
   <section id="tab-overview" class="hidden">
     <h2 class="text-2xl font-bold text-white section-title mb-6">Arsenal Overview</h2>
-    <!-- What's New banner -->
+    <!-- What's New banner — 2026-04-24 -->
+    <div class="glass rounded-xl p-5 mb-6 border border-green-500/30" style="background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(34,197,94,0.02))">
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+          <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-2">
+            <h3 class="text-sm font-semibold text-white">What's New — 2026-04-24</h3>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-green-500/20 text-green-300 font-medium">Cherry-picks</span>
+          </div>
+          <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside ml-1">
+            <li>Evaluated 15 candidate tools/skills — full report in session memory. <strong class="text-white">Net: 7 cherry-picked skills installed, 10 skipped</strong> (security or redundancy reasons).</li>
+            <li><strong class="text-white">gstack cherry-picks (4)</strong> from <a href="https://github.com/garrytan/gstack" class="text-claude-400 hover:underline" target="_blank">garrytan/gstack</a>: <code class="mono text-claude-400">/cso</code> (OWASP+STRIDE), <code class="mono text-claude-400">/qa</code> (test+fix loop), <code class="mono text-claude-400">/canary</code> (post-deploy watch), <code class="mono text-claude-400">/land-and-deploy</code> (merge→CI→deploy→verify). <em>Skipped the other 19 skills + setup script + auto-updater</em> (SuperClaude overlap, supply-chain risk).</li>
+            <li><strong class="text-white">addyosmani cherry-picks (3)</strong> from <a href="https://github.com/addyosmani/agent-skills" class="text-claude-400 hover:underline" target="_blank">addyosmani/agent-skills</a>: <code class="mono text-claude-400">frontend-ui-engineering</code>, <code class="mono text-claude-400">browser-testing-with-devtools</code>, <code class="mono text-claude-400">incremental-implementation</code>. <em>Skipped 18 other skills</em> (redundant with superpowers/SuperClaude).</li>
+            <li><strong class="text-white">ship-safe</strong> (<code class="mono text-claude-400">npx ship-safe audit .</code>) — used for one-shot Spektrum audit, not installed persistently. Score 13/100 (~75% false-positive noise; 4 real P0s triaged for Phase A fixes).</li>
+            <li><strong>Skipped:</strong> Continuous-Claude-v3, refactoring-ui skill, react-code-fix-linter, nagual-qe, everything-claude-code, Agent-Reach, timesfm, claude-mem, Decepticon, and gstack setup/auto-updater. Reasons: RTK/SuperClaude/memory-system redundancy, supply-chain risk, or offensive-security tooling.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- What's New banner — 2026-04-12 -->
     <div class="glass rounded-xl p-5 mb-6 border border-claude-500/30" style="background:linear-gradient(135deg,rgba(236,110,26,0.08),rgba(236,110,26,0.02))">
       <div class="flex items-start gap-3">
         <div class="w-8 h-8 rounded-lg bg-claude-500/20 flex items-center justify-center flex-shrink-0">
@@ -372,6 +393,20 @@ plugins: [
    guide:'Invoke: `/research-scout` (one sweep) or pair with `/loop 8h /research-scout` / `/schedule "0 3 * * *" /research-scout`.\n\nDedupes against existing CLAUDE.md/memory before staging. Weekly `/research-scout --promote` review promotes corroborated findings.'},
   {id:'ui-ux-pro-max',url:'https://github.com/nextlevelbuilder/ui-ux-pro-max-skill',name:'UI/UX Pro Max',author:'NextLevelBuilder',version:'2.5.0',enabled:true,new:true,desc:'AI design intelligence: 67 UI styles, 96 color palettes, 57 font pairings, 99 UX rules, 25 chart types across 13 stacks (React, Next, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn). BM25+regex search.',category:'creative',
    guide:'Invoke by asking for design guidance — the skill auto-triggers on "design", "style", "palette", "typography", "UX review" prompts. Works via Python search engine at `~/.claude/skills/ui-ux-pro-max/scripts/search.py`.\n\n**Install:** `npx uipro-cli init --ai claude` (already done 2026-04-13).\n\n**Domains:** `product`, `style`, `typography`, `color`, `landing`, `chart`, `ux`.\n\n**Stacks:** `html-tailwind` (default), `react`, `nextjs`, `astro`, `vue`, `nuxtjs`, `svelte`, `swiftui`, `react-native`, `flutter`, `shadcn`, `jetpack-compose`.\n\n**Pro tip:** Pair with `/design-audit` for critique, and `frontend-design` for actual component authoring. UI/UX Pro Max is the *reference*, not a generator.'},
+  {id:'cso',url:'https://github.com/garrytan/gstack',name:'/cso (gstack)',author:'garrytan',version:'2.0.0',enabled:true,new:true,desc:'Chief Security Officer mode. Infrastructure-first security audit: secrets archaeology, dependency supply chain, CI/CD, LLM/AI security, skill supply chain, OWASP Top 10, STRIDE. Two tiers: daily 8/10 gate, comprehensive 2/10.',category:'development',
+   guide:'Invoke: `/cso` (daily, zero-noise) or `/cso comprehensive` (monthly deep scan).\n\nCherry-picked from gstack bundle 2026-04-24 (installed 4 of 23 skills to avoid SuperClaude overlap).\n\n**Pair with:** `ship-safe` CLI (`npx ship-safe audit .`) for tool-assisted first pass, then `/cso` for narrative + prioritization.'},
+  {id:'qa',url:'https://github.com/garrytan/gstack',name:'/qa (gstack)',author:'garrytan',version:'2.0.0',enabled:true,new:true,desc:'Systematic QA + iterative bugfix loop for web apps. Runs tests, fixes bugs, commits atomically, re-verifies. Three tiers: Quick (critical/high), Standard (+medium), Exhaustive (+cosmetic). Before/after health scores.',category:'development',
+   guide:'Invoke: `/qa` (full test+fix loop) or `/qa-only` (report without fixes).\n\nUses real browser via Playwright/chrome-devtools-mcp. Proactively triggers when user says "ready for testing" or "does this work?".\n\n**Pair with:** `browser-testing-with-devtools` for runtime inspection, `canary` for post-deploy.'},
+  {id:'canary',url:'https://github.com/garrytan/gstack',name:'/canary (gstack)',author:'garrytan',version:'2.0.0',enabled:true,new:true,desc:'Post-deploy canary monitoring. Watches live app for console errors, performance regressions, page failures. Periodic screenshots vs. pre-deploy baseline. Takes over after deploy.',category:'workflow',
+   guide:'Invoke: `/canary` post-deploy. Uses browse daemon for periodic snapshots.\n\n**Flow:** `/qa` (pre-deploy) → deploy → `/canary` (post-deploy watch) → `/land-and-deploy` closes the loop.\n\n**Pair with:** chrome-devtools MCP for network + console capture.'},
+  {id:'land-and-deploy',url:'https://github.com/garrytan/gstack',name:'/land-and-deploy (gstack)',author:'garrytan',version:'2.0.0',enabled:true,new:true,desc:'Merge PR → wait for CI → wait for deploy → verify prod health via canary. End-to-end ship workflow. Takes over after /ship creates the PR.',category:'workflow',
+   guide:'Invoke: `/land-and-deploy` after `/ship` or manual PR creation.\n\n**Flow:** merge → CI → deploy → `/canary` verification → report.\n\nDoes NOT auto-rollback — alerts + leaves decision to human. Useful for Spektrum/SmokHot/Qponko release gates.'},
+  {id:'frontend-ui-engineering',url:'https://github.com/addyosmani/agent-skills',name:'Frontend UI Engineering (addyosmani)',author:'Addy Osmani (Google)',version:'1.0',enabled:true,new:true,desc:'Builds production-quality UIs. Enforces design-system adherence, proper a11y, thoughtful interactions. Anti "AI-generic aesthetic" — aims for design-aware engineer output.',category:'creative',
+   guide:'Triggers when building/modifying user-facing interfaces, components, layouts, state, or when output needs to feel production-quality.\n\nComplements (not replaces) `frontend-design` (Anthropic official) + `ui-ux-pro-max` + `design-audit`. Addy brings Chrome-team perspective: real DS adherence over vibes.\n\n**Source:** addyosmani/agent-skills (22k★).'},
+  {id:'browser-testing-with-devtools',url:'https://github.com/addyosmani/agent-skills',name:'Browser Testing w/ DevTools (addyosmani)',author:'Addy Osmani (Google)',version:'1.0',enabled:true,new:true,desc:'Tests in real browsers via chrome-devtools-mcp. Inspect DOM, capture console errors, analyze network, profile perf, verify visual output with live runtime data.',category:'development',
+   guide:'Auto-triggers for browser-running code. Bridges static analysis and live runtime.\n\n**Uses existing chrome-devtools-mcp** (already installed) — no new MCP needed. Check `--no-usage-statistics` flag if you want to disable Google telemetry.\n\n**Pair with:** `/qa` for test-and-fix loop, `canary` for post-deploy monitoring.'},
+  {id:'incremental-implementation',url:'https://github.com/addyosmani/agent-skills',name:'Incremental Implementation (addyosmani)',author:'Addy Osmani (Google)',version:'1.0',enabled:true,new:true,desc:'Delivers changes incrementally. Prevents "big bang" multi-file rewrites by enforcing small, verifiable steps with commits between them.',category:'development',
+   guide:'Triggers when a task touches >1 file or feels too big.\n\nComplements `superpowers:writing-plans` + `superpowers:executing-plans`: those are the plan, this is the pacing. Avoids catastrophic mid-task rewrites.\n\n**Pair with:** `superpowers:verification-before-completion` to gate each increment.'},
 ],
 
 skills: [
