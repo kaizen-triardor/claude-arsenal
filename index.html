@@ -105,6 +105,27 @@
   <!-- OVERVIEW -->
   <section id="tab-overview" class="hidden">
     <h2 class="text-2xl font-bold text-white section-title mb-6">Arsenal Overview</h2>
+    <!-- What's New banner — 2026-04-29 -->
+    <div class="glass rounded-xl p-5 mb-6 border border-amber-500/30" style="background:linear-gradient(135deg,rgba(245,158,11,0.10),rgba(245,158,11,0.02))">
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-2">
+            <h3 class="text-sm font-semibold text-white">What's New — 2026-04-29</h3>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-medium">SEO+GEO+AI-SEO</span>
+          </div>
+          <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside ml-1">
+            <li><strong class="text-white">SEO/GEO/AI-SEO suite</strong> — researched 3 candidate repos, installed 2 (skipped opc-skills as redundant + paywalled).</li>
+            <li><strong class="text-white">Primary: <code class="mono text-claude-400">geo-seo</code></strong> from <a href="https://github.com/zubair-trabzada/geo-seo-claude" class="text-claude-400 hover:underline" target="_blank">zubair-trabzada/geo-seo-claude</a> — 15 skills + 5 subagents + 6 ready JSON-LD templates (LocalBusiness with openingHoursSpecification, areaServed, aggregateRating). Includes runnable Python: citability scorer, llms.txt generator, brand scanner, PDF report builder. MIT.</li>
+            <li><strong class="text-white">Secondary: <code class="mono text-claude-400">aaron-seo</code></strong> from <a href="https://github.com/aaron-he-zhu/seo-geo-claude-skills" class="text-claude-400 hover:underline" target="_blank">aaron-he-zhu/seo-geo-claude-skills</a> — selective install of 6 skills (technical-seo-checker, on-page-auditor, keyword-research, schema-markup, meta-tags, geo-content-optimizer). <em>Skipped:</em> 14 third-party MCP servers, 8 hooks, 17 commands tied to a memory-management framework — too heavy for a 5-page site.</li>
+            <li><strong class="text-white">Software Mansion RN skills (4)</strong> from <a href="https://github.com/software-mansion/skills" class="text-claude-400 hover:underline" target="_blank">software-mansion/skills</a> — installed 2026-04-28 for CasPosla + Qponko. Reanimated, Gesture Handler, Radon IDE, TypeGPU.</li>
+            <li><strong>Workflow:</strong> 12-step audit pipeline — see Skills tab → search "geo".</li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <!-- What's New banner — 2026-04-24 -->
     <div class="glass rounded-xl p-5 mb-6 border border-green-500/30" style="background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(34,197,94,0.02))">
       <div class="flex items-start gap-3">
@@ -488,6 +509,38 @@ skills: [
    guide:'Comprehensive release validation.\n\n**Covers:**\n- Build verification\n- Certification requirements\n- Store metadata\n- Launch readiness checks\n\n**Pro tip:** Use before every deployment. Catches missed steps.'},
   {id:'project-stage',url:'https://github.com/anthropics/claude-code/tree/main/skills',name:'/project-stage-detect',desc:'Analyze project state, detect development stage, identify gaps, recommend next steps.',category:'workflow',
    guide:'Automatically determines where your project is in its lifecycle.\n\n**Output:**\n- Current development stage\n- Gaps and missing artifacts\n- Recommended next steps\n\n**Pro tip:** Run when returning to a project after a break. Instant situational awareness.'},
+
+  // ──────────────────────────────────────────
+  // React Native / Mobile (swmansion, installed 2026-04-28)
+  // ──────────────────────────────────────────
+  {id:'rn-best-practices',url:'https://github.com/software-mansion/skills',name:'react-native-best-practices',author:'Software Mansion',version:'1.0',enabled:true,new:true,desc:'Best practices for animations, gestures, SVG, audio, multithreading, JSI, rich-text, on-device AI in React Native. Used for CasPosla + Qponko.',category:'creative',
+   guide:'Comprehensive React Native expertise from Software Mansion (the team behind Reanimated, Gesture Handler, Reanimated, etc.).\n\n**Coverage:**\n- Animations (Reanimated 3 patterns)\n- Gestures (Gesture Handler 2)\n- SVG manipulation\n- Audio playback\n- Multithreading + JSI\n- Rich text rendering\n- On-device AI inference\n\n**Pro tip:** Best single source of RN best practices. Auto-triggers when working on mobile apps.'},
+  {id:'rn-radon-mcp',url:'https://github.com/software-mansion/skills',name:'radon-mcp',author:'Software Mansion',version:'1.0',enabled:true,new:true,desc:'Radon IDE MCP integration for React Native debugging in Claude Code.',category:'development',
+   guide:'Bridges Radon IDE with Claude Code via MCP for React Native debugging without leaving your terminal.\n\n**Use when:** debugging RN apps, inspecting state, profiling performance.'},
+  {id:'rn-typegpu',url:'https://github.com/software-mansion/skills',name:'typegpu',author:'Software Mansion',version:'1.0',enabled:true,new:true,desc:'TypeScript GPU compute primitives for React Native (WebGPU-style).',category:'creative',
+   guide:'Type-safe GPU compute API for RN apps. Use for image processing, ML inference on-device, particle effects.'},
+  {id:'rn-expo-horizon',url:'https://github.com/software-mansion/skills',name:'expo-horizon',author:'Software Mansion',version:'1.0',enabled:true,new:true,desc:'Expo deployment + horizon-tier patterns for production RN apps.',category:'workflow',
+   guide:'Expo-specific deployment, EAS build configuration, OTA updates, native module integration.\n\n**Use when:** shipping RN/Expo apps to App Store / Play Store.'},
+
+  // ──────────────────────────────────────────
+  // SEO / GEO / AI-SEO (installed 2026-04-29) — 15 skills + 5 agents from zubair-trabzada/geo-seo-claude (PRIMARY) + 6 skills from aaron-he-zhu/seo-geo-claude-skills (SECONDARY, selective)
+  // ──────────────────────────────────────────
+  {id:'geo-audit',url:'https://github.com/zubair-trabzada/geo-seo-claude',name:'geo-audit',author:'zubair-trabzada',version:'1.0',enabled:true,new:true,desc:'Full SEO + GEO audit on any URL. Combines classic SEO checks with AI-engine citability and platform-specific scoring.',category:'seo',
+   guide:'Modern SEO audit covering classic + GEO + AI-SEO.\n\n**Output:**\n- Schema.org coverage\n- robots.txt / sitemap\n- Core Web Vitals\n- Citability score 0-100\n- Per-platform AI engine scores (AIO, ChatGPT, Perplexity, Gemini)\n\n**Pro tip:** Run pre-deploy on every site. ~5 min.'},
+  {id:'geo-platform-optimizer',url:'https://github.com/zubair-trabzada/geo-seo-claude',name:'geo-platform-optimizer',author:'zubair-trabzada',version:'1.0',enabled:true,new:true,desc:'Per-AI-engine optimization rubrics. Scores AIO, ChatGPT, Perplexity, Gemini, Bing Copilot separately with citation-source breakdowns.',category:'seo',
+   guide:'AI engines cite different sources. This skill scores per-engine and tells you what to fix.\n\n**Citation insights baked in:**\n- ChatGPT favors Wikipedia (47.9%)\n- Perplexity favors Reddit (46.7%)\n- Google AIO favors authoritative content\n\n**Use when:** preparing for production OR when AI overview citations are not landing.'},
+  {id:'geo-llmstxt',url:'https://github.com/zubair-trabzada/geo-seo-claude',name:'geo-llmstxt',author:'zubair-trabzada',version:'1.0',enabled:true,new:true,desc:'Generate /llms.txt — emerging convention for AI crawlers (Sept 2024 spec by Jeremy Howard).',category:'seo',
+   guide:'Auto-crawls your site and produces an llms.txt at root that AI engines use to understand your content.\n\n**Pro tip:** Early-mover advantage — most sites don\'t have this yet.'},
+  {id:'geo-citability',url:'https://github.com/zubair-trabzada/geo-seo-claude',name:'geo-citability',author:'zubair-trabzada',version:'1.0',enabled:true,new:true,desc:'0-100 score across 5 dimensions for how citable your content is to AI engines. Identifies passages scoring <60.',category:'seo',
+   guide:'Runs citability_scorer.py against page HTML. Scores statistics presence, citations, authority signals, structural clarity, semantic richness.\n\n**Use after writing copy.** Rewrite passages scoring below 60.'},
+  {id:'geo-schema',url:'https://github.com/zubair-trabzada/geo-seo-claude',name:'geo-schema',author:'zubair-trabzada',version:'1.0',enabled:true,new:true,desc:'JSON-LD schema generator with 6 ready templates: LocalBusiness, Organization, Product, Article, SaaS, Website.',category:'seo',
+   guide:'For local businesses (barbershops, restaurants, etc.) the LocalBusiness template is exceptional — pre-fills openingHoursSpecification, areaServed, aggregateRating, sameAs.\n\n**Use:** generate JSON-LD, paste into <head>.'},
+  {id:'geo-crawlers',url:'https://github.com/zubair-trabzada/geo-seo-claude',name:'geo-crawlers',author:'zubair-trabzada',version:'1.0',enabled:true,new:true,desc:'AI bot policy in robots.txt: GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot, Google-Extended.',category:'seo',
+   guide:'Decides which AI bots to allow/block based on your goals (visibility vs training-data control).'},
+  {id:'aaron-tech-seo',url:'https://github.com/aaron-he-zhu/seo-geo-claude-skills',name:'technical-seo-checker',author:'aaron-he-zhu',version:'9.9.5',enabled:true,new:true,desc:'Deep classic SEO: hreflang, sitemap, robots, Core Web Vitals, ecommerce + pre-migration playbooks.',category:'seo',
+   guide:'Most rigorous classic-SEO audit of the three SEO repos researched. Best for hreflang multi-language sites + LLM crawler handling reference.'},
+  {id:'aaron-keyword-research',url:'https://github.com/aaron-he-zhu/seo-geo-claude-skills',name:'keyword-research',author:'aaron-he-zhu',version:'9.9.5',enabled:true,new:true,desc:'Intent taxonomy + topic clusters + prioritization framework. Doesn\'t require paid SEO APIs.',category:'seo'},
+  {id:'aaron-meta-tags',url:'https://github.com/aaron-he-zhu/seo-geo-claude-skills',name:'meta-tags-optimizer',author:'aaron-he-zhu',version:'9.9.5',enabled:true,new:true,desc:'Per-route meta tag audit + fix: titles 50-60 chars, descriptions 150-160, og:image 1200x630, hreflang.',category:'seo'},
 ],
 
 agents: [
@@ -565,6 +618,13 @@ agents: [
   {id:'ue-umg',url:'https://docs.anthropic.com/en/docs/claude-code',name:'UE UMG/CommonUI',desc:'Widget hierarchy, data binding, CommonUI input routing, styling.',category:'development',tools:'All'},
   {id:'ue-blueprint',url:'https://docs.anthropic.com/en/docs/claude-code',name:'UE Blueprint',desc:'Blueprint architecture, BP/C++ boundary, optimization, clean patterns.',category:'development',tools:'All'},
   {id:'ue-replication',url:'https://docs.anthropic.com/en/docs/claude-code',name:'UE Replication',desc:'Property replication, RPCs, client prediction, relevancy, bandwidth.',category:'development',tools:'All'},
+
+  // SEO/GEO agents (zubair-trabzada/geo-seo-claude, installed 2026-04-29)
+  {id:'geo-ai-visibility',url:'https://github.com/zubair-trabzada/geo-seo-claude',name:'GEO AI Visibility',desc:'Orchestrates citability + platform + content checks for AI engines.',category:'research',tools:'All',new:true},
+  {id:'geo-content-agent',url:'https://github.com/zubair-trabzada/geo-seo-claude',name:'GEO Content',desc:'Content rewrite for AI citation. Applies 9 Princeton GEO methods.',category:'creative',tools:'All',new:true},
+  {id:'geo-platform-analysis',url:'https://github.com/zubair-trabzada/geo-seo-claude',name:'GEO Platform Analysis',desc:'Per-AI-engine optimization (AIO, ChatGPT, Perplexity, Gemini, Bing).',category:'research',tools:'All',new:true},
+  {id:'geo-schema-agent',url:'https://github.com/zubair-trabzada/geo-seo-claude',name:'GEO Schema',desc:'Schema audit + JSON-LD generation (LocalBusiness, Article, etc.).',category:'development',tools:'All',new:true},
+  {id:'geo-technical',url:'https://github.com/zubair-trabzada/geo-seo-claude',name:'GEO Technical',desc:'Technical SEO + Core Web Vitals + crawler accommodation.',category:'development',tools:'All',new:true},
 ],
 
 tools: [
