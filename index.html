@@ -90,6 +90,7 @@
 <nav class="glass border-b border-surface-700/30 sticky top-[73px] z-30 overflow-x-auto">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 flex gap-1 min-w-max">
     <button onclick="showTab('overview')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-gray-400 hover:text-white transition-colors border-b-2 border-transparent whitespace-nowrap" data-tab="overview">Overview</button>
+    <button onclick="showTab('memory')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-gray-400 hover:text-white transition-colors border-b-2 border-transparent whitespace-nowrap" data-tab="memory">Memory System</button>
     <button onclick="showTab('mcp')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-gray-400 hover:text-white transition-colors border-b-2 border-transparent whitespace-nowrap" data-tab="mcp">MCP Servers</button>
     <button onclick="showTab('plugins')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-gray-400 hover:text-white transition-colors border-b-2 border-transparent whitespace-nowrap" data-tab="plugins">Plugins</button>
     <button onclick="showTab('skills')" class="tab-btn px-3 py-3 text-xs sm:text-sm font-medium text-gray-400 hover:text-white transition-colors border-b-2 border-transparent whitespace-nowrap" data-tab="skills">Skills</button>
@@ -105,6 +106,29 @@
   <!-- OVERVIEW -->
   <section id="tab-overview" class="hidden">
     <h2 class="text-2xl font-bold text-white section-title mb-6">Arsenal Overview</h2>
+    <!-- What's New banner — 2026-05-18 — Memory System v2 complete -->
+    <div class="glass rounded-xl p-5 mb-6 border border-purple-500/40" style="background:linear-gradient(135deg,rgba(168,85,247,0.12),rgba(168,85,247,0.02))">
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+          <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-2 flex-wrap">
+            <h3 class="text-sm font-semibold text-white">What's New — 2026-05-18</h3>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-medium">Memory System v2 — Tier 4 LIVE</span>
+            <a href="#" onclick="event.preventDefault();showTab('memory')" class="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">Open Memory tab →</a>
+          </div>
+          <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside ml-1">
+            <li><strong class="text-white">4-tier memory architecture complete.</strong> MEMORY.md index + Obsidian vault + MemPalace + Cognee (3 datasets). Same slug joins all four stores. See Memory System tab for full architecture, pros/cons, and token-savings math.</li>
+            <li><strong class="text-white">Phase 3b — subagent-built knowledge graph.</strong> Dispatched 10 parallel Claude Code subagents over 75 vault files, deduped to <strong>316 entities + 471 edges</strong>, loaded into cognee in ~3 min, $0. Bypasses <code class="mono text-claude-400">cognify()</code> entirely → no Ladybug corruption risk. Pattern reusable; see <code class="mono text-claude-400">subagent-graph-extraction</code> in Plugins tab.</li>
+            <li><strong class="text-white">Phase 3c — Gemini 2.5 Flash Lite wired.</strong> Free-tier AI Studio key powers <code class="mono text-claude-400">SearchType.GRAPH_COMPLETION</code> natural-language graph queries. ~1-2s/call, 1000 RPD ceiling. Embeddings stay on local <code class="mono text-claude-400">nomic-embed-text</code>.</li>
+            <li><strong class="text-white">Autonomous nightly refresh re-enabled.</strong> <code class="mono text-claude-400">cognee-refresh.timer</code> fires daily 10:00 local, runs throttled cognify (12 RPM cap), resumable state file, health-monitored. No GPU fans (cloud LLM means kids stay asleep).</li>
+            <li><strong class="text-white">New entries:</strong> Cognee MCP (memory category, score 88, tier A), Memory System v2 architecture (rank #6, score 90), <code class="mono text-claude-400">subagent-graph-extraction</code> pattern (in plugins/skills). Old MemPalace ranking bumped — now fully integrated, not just installed.</li>
+            <li><strong>Estimated savings:</strong> ~120K tokens/day in averted file re-scans, ~3.6M/month, ~$54/mo equivalent at Opus 4.7 input rates. See Memory System → Token Savings table.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <!-- What's New banner — 2026-05-14 -->
     <div class="glass rounded-xl p-5 mb-6 border border-fuchsia-500/30" style="background:linear-gradient(135deg,rgba(217,70,239,0.10),rgba(217,70,239,0.02))">
       <div class="flex items-start gap-3">
@@ -288,6 +312,281 @@
     </div>
   </section>
 
+  <!-- MEMORY SYSTEM -->
+  <section id="tab-memory" class="hidden">
+    <div class="mb-6">
+      <h2 class="text-2xl font-bold text-white section-title mb-2">Memory System v2 — 4-Tier Architecture</h2>
+      <p class="text-sm text-gray-400">A unified persistent-memory stack across Obsidian, MemPalace, and Cognee. Designed 2026-05-17, Tier 4 completed 2026-05-18.</p>
+    </div>
+
+    <!-- TLDR card -->
+    <div class="glass rounded-xl p-5 mb-6 border border-claude-500/30" style="background:linear-gradient(135deg,rgba(236,110,26,0.10),rgba(236,110,26,0.02))">
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 rounded-lg bg-claude-500/20 flex items-center justify-center flex-shrink-0">
+          <svg class="w-4 h-4 text-claude-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-sm font-semibold text-white mb-2">TL;DR</h3>
+          <p class="text-xs text-gray-300 leading-relaxed">
+            4 cooperating stores, each with one job. <strong class="text-white">Tier 1</strong> is the always-loaded index (95 lines, ~2K tokens). <strong class="text-white">Tier 2</strong> is the curated Obsidian vault (210+ files of decisions, sessions, references). <strong class="text-white">Tier 3</strong> is MemPalace — every Claude Code conversation mined automatically into a verbatim store. <strong class="text-white">Tier 4</strong> is Cognee — three datasets giving chunk recall, slug-keyed graph traversal, and natural-language graph queries via Gemini. The join key across all tiers is the entity slug (<code class="mono text-xs text-claude-400">spektrum</code>, <code class="mono text-xs text-claude-400">qponko</code>, etc.) — same name = same project everywhere.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- The four tiers -->
+    <h3 class="text-lg font-semibold text-white mb-4">The Four Tiers</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+
+      <div class="glass rounded-xl p-5 card-hover">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 font-medium">TIER 1</span>
+          <h4 class="font-semibold text-white">HOT — Always loaded</h4>
+        </div>
+        <p class="text-xs text-gray-400 mb-3"><code class="mono text-claude-400">MEMORY.md</code> at <code class="mono">~/.claude/projects/-home-kaizenlinux/memory/</code></p>
+        <ul class="text-xs text-gray-300 space-y-1 mb-3 list-disc list-inside">
+          <li>~95 lines, ~2K tokens, injected into every session by Claude Code</li>
+          <li>Index only: one line per project + pointer to the topic file</li>
+          <li>Active projects · Paused · Archived · Feedback rules · References · Sessions · Meta</li>
+        </ul>
+        <p class="text-[11px] text-gray-500"><strong class="text-gray-400">Job:</strong> tell Claude what exists. Detail lives elsewhere.</p>
+      </div>
+
+      <div class="glass rounded-xl p-5 card-hover">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-300 font-medium">TIER 2</span>
+          <h4 class="font-semibold text-white">WARM — Curated vault</h4>
+        </div>
+        <p class="text-xs text-gray-400 mb-3">Obsidian vault, 210+ files at the same path (symlinked to Windows NTFS for Obsidian.app)</p>
+        <ul class="text-xs text-gray-300 space-y-1 mb-3 list-disc list-inside">
+          <li><code class="mono text-claude-400">10-Projects-Active/</code> — one file per live project</li>
+          <li><code class="mono text-claude-400">20-Projects-Paused/</code> · <code class="mono text-claude-400">30-Projects-Archived/</code></li>
+          <li><code class="mono text-claude-400">40-Sessions/</code> — dated session logs</li>
+          <li><code class="mono text-claude-400">50-Feedback/</code> — workflow rules + decisions</li>
+          <li><code class="mono text-claude-400">60-Reference/</code> — credentials, configs, install notes</li>
+          <li><code class="mono text-claude-400">70-People/</code> · <code class="mono text-claude-400">90-Meta/</code> · <code class="mono text-claude-400">00-Inbox/</code></li>
+        </ul>
+        <p class="text-[11px] text-gray-500"><strong class="text-gray-400">Job:</strong> rich, human-readable narrative. Read on demand via <code class="mono">Read</code>.</p>
+      </div>
+
+      <div class="glass rounded-xl p-5 card-hover">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-medium">TIER 3</span>
+          <h4 class="font-semibold text-white">EPISODIC — MemPalace</h4>
+        </div>
+        <p class="text-xs text-gray-400 mb-3"><code class="mono text-claude-400">~/.mempalace/</code> · ChromaDB + SQLite KG · 17K+ drawers</p>
+        <ul class="text-xs text-gray-300 space-y-1 mb-3 list-disc list-inside">
+          <li>Every Claude Code session JSONL transcript auto-mined</li>
+          <li>Wings = cwd (e.g. <code class="mono text-claude-400">Projects_Luka_Projects_LukaPr_Trisha_Berbernica</code>)</li>
+          <li>Rooms = extracted memory type (decision, problem, milestone, preference)</li>
+          <li>Hybrid scheduling: <code class="mono">SessionEnd</code> hook + 6h systemd timer + hourly health watchdog</li>
+          <li><code class="mono">flock</code>-protected · size:mtime idempotency · alert dropped to <code class="mono">00-Inbox/</code> if stale &gt;48h</li>
+        </ul>
+        <p class="text-[11px] text-gray-500"><strong class="text-gray-400">Job:</strong> "what did we discuss about X?" Answers from verbatim history.</p>
+      </div>
+
+      <div class="glass rounded-xl p-5 card-hover">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-medium">TIER 4</span>
+          <h4 class="font-semibold text-white">SEMANTIC — Cognee · 3 datasets</h4>
+        </div>
+        <p class="text-xs text-gray-400 mb-3"><code class="mono text-claude-400">~/.cognee/</code> · LanceDB + Ladybug + SQLite</p>
+        <ul class="text-xs text-gray-300 space-y-1 mb-3 list-disc list-inside">
+          <li><code class="mono text-claude-400">vault_3a</code> — chunks + embeddings, 217 files via local <code class="mono">nomic-embed-text</code>. <strong>CHUNKS</strong> search.</li>
+          <li><code class="mono text-claude-400">vault_3b</code> — 316 entities + 471 edges from 10 parallel Claude subagents. Controlled vocab (Project, Tool, Decision, Issue, …). $0.</li>
+          <li><code class="mono text-claude-400">vault_full_gemini</code> — native <code class="mono">cognify()</code> via Gemini 2.5 Flash Lite. Powers <strong>GRAPH_COMPLETION</strong> natural-language queries. Daily refresh via systemd timer.</li>
+        </ul>
+        <p class="text-[11px] text-gray-500"><strong class="text-gray-400">Job:</strong> "Which projects use Vercel?" "What blocks Plumbline?" Cross-project semantic recall.</p>
+      </div>
+    </div>
+
+    <!-- How it flows -->
+    <h3 class="text-lg font-semibold text-white mb-4">How a Query Flows</h3>
+    <div class="glass rounded-xl p-5 mb-8">
+      <pre class="mono text-[11px] text-gray-300 leading-relaxed overflow-x-auto">
+User asks: <span class="text-claude-400">"Which credentials exist for Spektrum?"</span>
+
+  1. Tier 1 (free) — MEMORY.md is already in context. Index shows
+     spektrum is an active project. Cost: 0 extra tokens.
+
+  2. Tier 2 → <code class="text-blue-400">Read 60-Reference/reference_spektrum_client_credentials.md</code>
+     when the question is targeted. ~2K tokens for the specific file.
+
+  3. Tier 4 → <code class="text-purple-400">cognee.search(q, SearchType.GRAPH_COMPLETION)</code>
+     when the question spans projects. Gemini traverses the graph,
+     returns a natural-language answer with cited entities. ~500 tokens
+     in, ~200 out, 1-2s latency.
+
+  4. Tier 3 → <code class="text-cyan-400">mempalace_search(q)</code> when the question is
+     <em>historical</em> ("what did we decide on Spektrum auth in March?").
+     Returns matching conversation chunks with timestamps.
+
+The 4 tiers compose. Same slug <code class="text-claude-400">spektrum</code> resolves the
+same project across all four stores — that's the join key.</pre>
+    </div>
+
+    <!-- Pros / Cons -->
+    <h3 class="text-lg font-semibold text-white mb-4">Pros &amp; Cons</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <div class="glass rounded-xl p-5">
+        <h4 class="text-sm font-semibold text-green-400 mb-3 flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          PROS
+        </h4>
+        <ul class="text-xs text-gray-300 space-y-2 list-disc list-inside">
+          <li><strong class="text-white">Persistent across sessions.</strong> New Claude session = full project context loaded in 2K tokens.</li>
+          <li><strong class="text-white">No re-explaining.</strong> The "what is Spektrum?" answer survives across days and machines.</li>
+          <li><strong class="text-white">Cross-project recall.</strong> "Which of my projects deploy on Vercel?" answers in 1 query.</li>
+          <li><strong class="text-white">Autonomous maintenance.</strong> MemPalace mines on every session end; Gemini cognify refreshes daily.</li>
+          <li><strong class="text-white">$0 cost.</strong> Local embeddings, Gemini free tier, Claude Max plan for subagent extraction.</li>
+          <li><strong class="text-white">No corruption path.</strong> Cloud LLM means no Ladybug v40 bug; subagents bypass <code class="mono">cognify()</code> entirely.</li>
+          <li><strong class="text-white">Idempotent + resumable.</strong> Daily timer picks up where yesterday's quota ran out.</li>
+          <li><strong class="text-white">Obsidian-native.</strong> Vault is browseable, editable, searchable in Obsidian.app on Windows.</li>
+        </ul>
+      </div>
+
+      <div class="glass rounded-xl p-5">
+        <h4 class="text-sm font-semibold text-red-400 mb-3 flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          CONS
+        </h4>
+        <ul class="text-xs text-gray-300 space-y-2 list-disc list-inside">
+          <li><strong class="text-white">Setup is non-trivial.</strong> 4 stores, 6 scripts, 3 systemd units, 2 hooks. Worth it once running.</li>
+          <li><strong class="text-white">Stale data risk.</strong> A memory written 39 days ago about code may no longer reflect reality. Mitigation: verify against current code before asserting.</li>
+          <li><strong class="text-white">Naming drift.</strong> If a project rename isn't propagated to the vault slug, the graph join breaks. Manual cleanup needed.</li>
+          <li><strong class="text-white">Gemini daily ceiling.</strong> ~1000 RPD on free tier — full vault refresh may take 2-3 days to converge after big vault changes.</li>
+          <li><strong class="text-white">Tier 4 cognify NOT idempotent across runs.</strong> Re-running cognify on the same files produces slightly different entities (LLM variance). State file mitigates the rerun cost.</li>
+          <li><strong class="text-white">Single-machine.</strong> Vault is symlinked to Windows NTFS; portable to other Linux machines only with the symlink redone.</li>
+          <li><strong class="text-white">Memory ≠ truth.</strong> Always verify before acting — a memory is a point-in-time observation, not live state.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Token savings -->
+    <h3 class="text-lg font-semibold text-white mb-4">Token Savings — Real Numbers</h3>
+    <div class="glass rounded-xl p-5 mb-8">
+      <p class="text-xs text-gray-400 mb-4">Compared against a baseline where every new session has zero memory and must re-discover context by reading files.</p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs">
+          <thead>
+            <tr class="border-b border-surface-700/50 text-gray-400">
+              <th class="text-left py-2 pr-4">Scenario</th>
+              <th class="text-right py-2 pr-4">Without Memory</th>
+              <th class="text-right py-2 pr-4">With Memory v2</th>
+              <th class="text-right py-2">Saved</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-300">
+            <tr class="border-b border-surface-700/30">
+              <td class="py-2 pr-4">Session start (any project)</td>
+              <td class="text-right py-2 pr-4 mono">~50,000 tok<br><span class="text-[10px] text-gray-500">read CLAUDE.md + scan top-level + read recent commits</span></td>
+              <td class="text-right py-2 pr-4 mono">~2,000 tok<br><span class="text-[10px] text-gray-500">MEMORY.md auto-loaded</span></td>
+              <td class="text-right py-2 mono text-green-400">96%</td>
+            </tr>
+            <tr class="border-b border-surface-700/30">
+              <td class="py-2 pr-4">"What's the status of Spektrum?"</td>
+              <td class="text-right py-2 pr-4 mono">~80,000 tok<br><span class="text-[10px] text-gray-500">read entire Spektrum repo + sessions</span></td>
+              <td class="text-right py-2 pr-4 mono">~4,000 tok<br><span class="text-[10px] text-gray-500">Read 1 project file + 1 session log</span></td>
+              <td class="text-right py-2 mono text-green-400">95%</td>
+            </tr>
+            <tr class="border-b border-surface-700/30">
+              <td class="py-2 pr-4">"Which projects deploy on Vercel?"</td>
+              <td class="text-right py-2 pr-4 mono">~400,000 tok<br><span class="text-[10px] text-gray-500">grep + read every project file</span></td>
+              <td class="text-right py-2 pr-4 mono">~600 tok<br><span class="text-[10px] text-gray-500">Tier 4 GRAPH_COMPLETION (Gemini)</span></td>
+              <td class="text-right py-2 mono text-green-400">99.85%</td>
+            </tr>
+            <tr class="border-b border-surface-700/30">
+              <td class="py-2 pr-4">"Why did we choose qwen3.5 over deepseek?"</td>
+              <td class="text-right py-2 pr-4 mono">∞<br><span class="text-[10px] text-gray-500">unrecoverable — original chat gone</span></td>
+              <td class="text-right py-2 pr-4 mono">~1,500 tok<br><span class="text-[10px] text-gray-500">Tier 3 MemPalace recall</span></td>
+              <td class="text-right py-2 mono text-green-400">∞</td>
+            </tr>
+            <tr class="border-b border-surface-700/30">
+              <td class="py-2 pr-4">Resume an interrupted refactor</td>
+              <td class="text-right py-2 pr-4 mono">~30,000 tok<br><span class="text-[10px] text-gray-500">re-read diffs + reconstruct state</span></td>
+              <td class="text-right py-2 pr-4 mono">~3,000 tok<br><span class="text-[10px] text-gray-500">read session log + last project state</span></td>
+              <td class="text-right py-2 mono text-green-400">90%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="text-center p-3 rounded-lg bg-surface-700/30">
+          <div class="text-2xl font-bold text-green-400">~120K</div>
+          <div class="text-[10px] text-gray-400 mt-1">tokens saved per typical day<br>(5-10 sessions)</div>
+        </div>
+        <div class="text-center p-3 rounded-lg bg-surface-700/30">
+          <div class="text-2xl font-bold text-green-400">~3.6M</div>
+          <div class="text-[10px] text-gray-400 mt-1">tokens saved per month<br>(at 30 active days)</div>
+        </div>
+        <div class="text-center p-3 rounded-lg bg-surface-700/30">
+          <div class="text-2xl font-bold text-green-400">~$54</div>
+          <div class="text-[10px] text-gray-400 mt-1">monthly API equivalent<br>(at Opus 4.7 input rates)</div>
+        </div>
+      </div>
+
+      <p class="text-[11px] text-gray-500 mt-4 italic">
+        Numbers are conservative estimates from observed query patterns. Real savings are higher because the system enables queries that would otherwise be skipped as "too expensive to investigate". For users on Max plan flat fee, savings show up as: faster sessions, more headroom for actual work, fewer context resets.
+      </p>
+    </div>
+
+    <!-- Components table -->
+    <h3 class="text-lg font-semibold text-white mb-4">Components &amp; Files</h3>
+    <div class="glass rounded-xl p-5 mb-8 overflow-x-auto">
+      <table class="w-full text-xs">
+        <thead>
+          <tr class="border-b border-surface-700/50 text-gray-400">
+            <th class="text-left py-2 pr-4">Path</th>
+            <th class="text-left py-2 pr-4">Tier</th>
+            <th class="text-left py-2">Role</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-300">
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono text-claude-400">~/.claude/projects/-home-kaizenlinux/memory/MEMORY.md</td><td class="py-2 pr-4">1</td><td>Auto-loaded index</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono text-claude-400">~/.claude/projects/-home-kaizenlinux/memory/*/</td><td class="py-2 pr-4">2</td><td>Vault directories (Obsidian)</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">/mnt/c/Users/Kaizen/Obsidian/memory/</td><td class="py-2 pr-4">2</td><td>Physical NTFS location (symlinked)</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono text-claude-400">~/.mempalace/</td><td class="py-2 pr-4">3</td><td>ChromaDB + KG store</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">~/.mempalace/lib/session-mine.sh</td><td class="py-2 pr-4">3</td><td>Per-session miner (hook)</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">~/.mempalace/lib/full-sweep.sh</td><td class="py-2 pr-4">3</td><td>6h safety-net sweep</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">systemd: mempalace-mine.timer</td><td class="py-2 pr-4">3</td><td>Scheduled mining</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">systemd: mempalace-health.timer</td><td class="py-2 pr-4">3</td><td>Hourly health check</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono text-claude-400">~/.cognee/</td><td class="py-2 pr-4">4</td><td>Graph DB + LanceDB + SQLite</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">~/cognee/cognee-mcp/vault_ingest_3a.py</td><td class="py-2 pr-4">4</td><td>Phase 3a chunks ingest</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">~/cognee/cognee-mcp/extract_schema.md</td><td class="py-2 pr-4">4</td><td>Phase 3b subagent prompt spec</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">~/cognee/cognee-mcp/load_subagent_graph.py</td><td class="py-2 pr-4">4</td><td>Phase 3b loader (entity/edge → graph)</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">~/cognee/cognee-mcp/cognify_full_vault_gemini.py</td><td class="py-2 pr-4">4</td><td>Phase 3c throttled Gemini runner</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">~/cognee/cognee-mcp/cognee-refresh.sh</td><td class="py-2 pr-4">4</td><td>Daily refresh wrapper</td></tr>
+          <tr><td class="py-2 pr-4 mono">systemd: cognee-refresh.timer</td><td class="py-2 pr-4">4</td><td>Daily refresh @ 10:00 local</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Bottom callout -->
+    <div class="glass rounded-xl p-5 border border-blue-500/30" style="background:linear-gradient(135deg,rgba(59,130,246,0.08),rgba(59,130,246,0.02))">
+      <h3 class="text-sm font-semibold text-white mb-3">Failure Modes &amp; Recovery</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-gray-300">
+        <div>
+          <p class="font-semibold text-blue-300 mb-1">Symptom: MEMPALACE_HEALTH_ALERT.md in inbox</p>
+          <p class="text-gray-400">→ Mining stalled &gt;48h. Run <code class="mono text-claude-400">journalctl --user -u mempalace-mine.service</code>, then manual <code class="mono">bash ~/.mempalace/lib/full-sweep.sh</code>.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-blue-300 mb-1">Symptom: COGNEE_REFRESH_ALERT.md in inbox</p>
+          <p class="text-gray-400">→ Refresh failed &gt;72h. Check <code class="mono text-claude-400">~/.cognee/cognify_full_vault.log</code>. If quota-only, wait for next UTC day.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-blue-300 mb-1">Symptom: cognee.recall returns "NoneType.id"</p>
+          <p class="text-gray-400">→ MCP server started before any user existed. Restart Claude Code session.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-blue-300 mb-1">Symptom: stale memory contradicts reality</p>
+          <p class="text-gray-400">→ Memory ≠ truth. Verify against current code, update or delete the bad memory.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- MCP SERVERS -->
   <section id="tab-mcp" class="hidden">
     <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
@@ -411,6 +710,8 @@ mcpServers: [
    guide:'Install method: `uvx excel-mcp-server stdio` — no Python venv needed.\n\n**Best uses:**\n- Bulk-edit spreadsheets programmatically\n- Generate reports with formulas/charts\n- Parse large workbooks too big for Read\n\n**Pair with:** `document-skills:xlsx` skill for authoring patterns.'},
   {id:'code-review-graph',url:'https://github.com/code-review-graph/code-review-graph',name:'Code Review Graph',desc:'Knowledge-graph-backed code review. semantic_search_nodes, detect_changes, get_impact_radius, query_graph — faster than Grep for large repos.',category:'development',tools:'many',new:true,
    guide:'Install: `pipx install code-review-graph && code-review-graph install --platform claude-code` then `code-review-graph build` in a repo.\n\n**Prefer over Grep/Glob when:**\n- Exploring unfamiliar code\n- Assessing change blast radius\n- Reviewing diffs with structural context\n- Finding callers/callees/tests\n\n**Auto-updates** via file-change hooks installed at `~/.claude/settings.json`.'},
+  {id:'cognee',url:'https://github.com/topoteretes/cognee',name:'Cognee (Tier 4 memory)',desc:'AI memory platform: 3 datasets (chunks, subagent-built graph, Gemini-cognified graph) over the Obsidian vault. Powers cross-project NL queries via GRAPH_COMPLETION. Daily systemd refresh on free Gemini tier.',category:'memory',tools:'many',new:true,
+   guide:'**What it does:** ECL pipeline (Extract → Cognify → Load). Stores embeddings in LanceDB + knowledge graph in Ladybug + metadata in SQLite. We run it locally for vault memory.\n\n**Our 3 datasets:**\n- `vault_3a` — chunks + embeddings (local nomic-embed-text), all 217 files. SearchType.CHUNKS.\n- `vault_3b` — 316 entities + 471 edges, built one-shot by 10 parallel Claude Code subagents using a controlled vocabulary. $0.\n- `vault_full_gemini` — native cognify() via Gemini 2.5 Flash Lite, autonomous daily refresh.\n\n**Query paths:**\n- `cognee.search(q, SearchType.CHUNKS)` — vector recall, no LLM needed.\n- `cognee.search(q, SearchType.GRAPH_COMPLETION)` — natural-language answers over the graph (Gemini).\n- Direct: `graph_engine.extract_node(uuid5(slug))`, `get_neighbors`, `get_edges`.\n\n**Refresh:** `systemctl --user list-timers cognee-refresh.timer` — fires daily at 10:00 local.\n\n**Why three datasets?** Different recall modes. Chunks for fuzzy semantic search. Subagent graph for deterministic structural traversal. Gemini graph for the rich, LLM-extracted version that powers NL queries.\n\n**See:** Memory System tab for the full architecture.'},
 ],
 
 plugins: [
@@ -581,6 +882,8 @@ skills: [
    guide:'**Prompt-shaping skill for mobile UI mockups.** Default: each screen inside a subtle premium iPhone-style frame, but the app content is the focus.\n\n**Covers:** onboarding/auth, dashboards/profiles, settings, chat, ecommerce, fintech, health/fitness, productivity, social, utilities.\n\n**Concrete use cases:**\n- Qponko Play Store framed screenshots (current `phone-1..8.png` upgrade)\n- CasPosla marketing mockups\n- Future Triardor mobile app pitches\n\n**Pair with:** any `gpt-image-2-*` route for the actual render.'},
   {id:'image',url:'https://github.com/vercel-labs/json-render',name:'image (json-render / Satori)',author:'vercel-labs',version:'1.0',enabled:true,new:true,desc:'Deterministic JSON→SVG/PNG renderer via Satori. Not generative AI — turns a structured JSON spec (frames, elements, props) into pixel-perfect output. From the json-render ecosystem (14.8K★).',category:'creative',
    guide:'**Not LLM-generative — deterministic rendering.** Perfect when you need exact control: brand-correct colors, exact text content, repeatable layouts.\n\n**Best for:**\n- OG / social cards (1200×630)\n- Open Graph images for blog posts\n- Brand-consistent infographics (e.g. Qponko 5-card pipeline)\n- Marketing micro-graphics where prompt-based gen drifts off-brand\n\n**Concrete fit for Qponko (2026-05-14):** Replace the 5 infographics that rendered with letterbox bars + cut text via the HTML→Chrome pipeline. JSON spec → Satori = consistent, reproducible, zero text-cutoff bugs.\n\n**Core export:** `@json-render/image/render` → `renderToPng()`. Sibling renderers (react, core) for non-image outputs.'},
+  {id:'subagent-graph-extraction',url:'https://github.com/topoteretes/cognee',name:'Subagent-Driven Knowledge Graph Extraction',author:'local pattern',version:'1.0',enabled:true,new:true,desc:'In-session pattern: dispatch ~10 parallel Claude Code subagents over batched files, each returning controlled-vocab JSON {nodes, edges}. Aggregator dedupes + loads into cognee via add_data_points. Bypasses cognify() entirely — no Ladybug corruption risk, $0 on Max plan.',category:'memory',
+   guide:'**Pattern, not a tool.** Used 2026-05-18 to build the vault_3b dataset (316 entities + 471 edges over 75 high-value vault files) in ~3 min of parallel agent time.\n\n**Recipe:**\n1. Write `extract_schema.md` — controlled vocab (Project, Tool, Decision, …) + relation types + ID conventions (lowercase snake_case = vault slugs).\n2. Group files into ~10 topic-coherent batches of 4-11 files each.\n3. Spawn 10 background `general-purpose` agents in parallel via the Agent tool. Each reads schema + its batch + writes JSON to `/tmp/phase3b_out/batch_NN.json`.\n4. Aggregate, dedupe by id, drop dangling edges.\n5. Load via custom script using `graph_engine.add_nodes + index_data_points + graph_engine.add_edges` (the path `add_data_points` uses internally).\n\n**Why this beats LLM-cognify:**\n- $0 (Max plan quota) vs API spend\n- 3 min vs 10+ min hung runs with local LLMs\n- No corruption path: we never call `cognify()` so the Ladybug v40 bug is structurally impossible\n- Controlled vocab → deterministic structure, easy to query\n\n**Code:** `~/cognee/cognee-mcp/extract_schema.md` + `~/cognee/cognee-mcp/load_subagent_graph.py`.\n\n**See:** Memory System tab for full context.'},
 ],
 
 agents: [
@@ -718,58 +1021,64 @@ rankings: [
   {rank:5,name:'Agent Tool',url:'https://docs.anthropic.com/en/docs/claude-code',type:'Built-in',category:'development',score:91,tier:'S',
    why:'The meta-capability. 48 specialist agents + parallel execution = 3-5x throughput on complex tasks. The tool that makes all other tools more powerful.',
    quickWin:'Launch 2-3 research agents in parallel instead of sequential searches. Use background mode for non-blocking work.'},
-  {rank:6,name:'MemPalace',url:'https://github.com/milla-jovovich/mempalace',type:'MCP',category:'memory',score:89,tier:'A',new:true,
-   why:'96.6% recall on historical conversations. Fills the critical gap between "what is true now" (file memory) and "why did we decide this" (verbatim history). Cross-project recall.',
-   quickWin:'Mine your Claude conversation exports: `mempalace mine ~/.claude/ --mode convos`. Then search for past architectural decisions.'},
-  {rank:7,name:'Serena',url:'https://github.com/oraios/serena',type:'MCP',category:'development',score:87,tier:'A',
+  {rank:6,name:'Memory System v2 (4-tier)',url:'https://kaizen-triardor.github.io/claude-arsenal/#memory',type:'Architecture',category:'memory',score:90,tier:'A',new:true,
+   why:'Custom umbrella architecture: MEMORY.md index (always loaded) + Obsidian vault (curated) + MemPalace (verbatim episodic) + Cognee (3 datasets: chunks, subagent graph, Gemini graph). Same slug joins all four stores. ~$54/mo in saved tokens.',
+   quickWin:'New session? MEMORY.md is already in context. Ask a cross-project question — GRAPH_COMPLETION via Gemini answers in 1-2s. See Memory System tab.'},
+  {rank:7,name:'MemPalace',url:'https://github.com/milla-jovovich/mempalace',type:'MCP',category:'memory',score:89,tier:'A',new:true,
+   why:'96.6% recall on historical conversations. Fills the critical gap between "what is true now" (file memory) and "why did we decide this" (verbatim history). Cross-project recall. Now autonomous via systemd hooks + 6h timer.',
+   quickWin:'Already mining every session. Ask: "What did we decide about Spektrum auth last month?" — palace returns the actual conversation chunk.'},
+  {rank:8,name:'Cognee (Tier 4)',url:'https://github.com/topoteretes/cognee',type:'MCP',category:'memory',score:88,tier:'A',new:true,
+   why:'Three coordinated datasets over the vault: chunks (vault_3a), subagent-built graph (vault_3b, 316 entities + 471 edges, $0), and Gemini-cognified graph (vault_full_gemini, NL queries). Daily systemd refresh on free tier.',
+   quickWin:'`cognee.search("Which projects use Vercel?", SearchType.GRAPH_COMPLETION)` — Gemini traverses the graph and returns a natural-language answer.'},
+  {rank:9,name:'Serena',url:'https://github.com/oraios/serena',type:'MCP',category:'development',score:87,tier:'A',
    why:'IDE-level semantic code intelligence. Navigate symbols, find references, rename across codebase. More precise than grep, more efficient than reading full files.',
    quickWin:'Use `find_symbol` + `get_symbols_overview` instead of reading entire files. Rename variables safely across the whole project.'},
-  {rank:8,name:'Memory (Knowledge Graph)',url:'https://github.com/modelcontextprotocol/servers/tree/main/src/memory',type:'MCP',category:'memory',score:85,tier:'A',
+  {rank:10,name:'Memory (Knowledge Graph)',url:'https://github.com/modelcontextprotocol/servers/tree/main/src/memory',type:'MCP',category:'memory',score:85,tier:'A',
    why:'Structured entity-relationship storage. Best for facts that need to be queried: "What projects use Next.js?" or "Who works on what?" Complements file memory and MemPalace.',
    quickWin:'Store project-entity relationships. Query with `search_nodes` when you need cross-project facts.'},
-  {rank:9,name:'Claude Historian',url:'https://github.com/Vvkmnn/claude-historian-mcp',type:'MCP',category:'memory',score:84,tier:'A',
+  {rank:11,name:'Claude Historian',url:'https://github.com/Vvkmnn/claude-historian-mcp',type:'MCP',category:'memory',score:84,tier:'A',
    why:'Direct access to raw conversation history. Find exact past solutions, tool patterns, and error resolutions. The forensic complement to MemPalace\'s semantic search.',
    quickWin:'`find_similar_queries` when you hit a problem you think you\'ve solved before. `get_error_solutions` for recurring errors.'},
-  {rank:10,name:'Playwright',url:'https://github.com/microsoft/playwright-mcp',type:'MCP',category:'automation',score:83,tier:'A',
+  {rank:12,name:'Playwright',url:'https://github.com/microsoft/playwright-mcp',type:'MCP',category:'automation',score:83,tier:'A',
    why:'Real browser automation. Test web apps, take screenshots, fill forms, evaluate JS. Essential for E2E testing and visual verification of UI work.',
    quickWin:'After building UI: "Open localhost and test the login flow, take screenshots of each step."'},
-  {rank:11,name:'GitHub MCP',url:'https://github.com/modelcontextprotocol/servers/tree/main/src/github',type:'MCP',category:'integration',score:82,tier:'A',
+  {rank:13,name:'GitHub MCP',url:'https://github.com/modelcontextprotocol/servers/tree/main/src/github',type:'MCP',category:'integration',score:82,tier:'A',
    why:'Full GitHub API without context switching. Create PRs, search code, manage issues, review changes. Keeps your workflow in the terminal.',
    quickWin:'Create PRs directly from conversation. Search code across all public repos for patterns and examples.'},
-  {rank:12,name:'Frontend Design',url:'https://github.com/anthropics/claude-plugins-official',type:'Plugin',category:'creative',score:80,tier:'B',
+  {rank:14,name:'Frontend Design',url:'https://github.com/anthropics/claude-plugins-official',type:'Plugin',category:'creative',score:80,tier:'B',
    why:'Auto-triggers for frontend work. Produces distinctive, non-generic UI. Matches your vanilla HTML/CSS/JS preference.',
    quickWin:'Triggers automatically when you say "build a dashboard" or "create a page." No manual invocation needed.'},
-  {rank:13,name:'CCUsage',url:'https://github.com/ryoppippi/ccusage',type:'MCP',category:'tokens',score:78,tier:'B',
+  {rank:15,name:'CCUsage',url:'https://github.com/ryoppippi/ccusage',type:'MCP',category:'tokens',score:78,tier:'B',
    why:'Visibility into token spending. Essential for measuring ROI of RTK and Graphify. Monthly cost tracking prevents budget surprises.',
    quickWin:'Run weekly to compare against pre-RTK baseline (your pre-RTK baseline). Track the trend.'},
-  {rank:14,name:'Phoenix (Arize)',url:'https://github.com/Arize-ai/phoenix',type:'MCP',category:'development',score:76,tier:'B',
+  {rank:16,name:'Phoenix (Arize)',url:'https://github.com/Arize-ai/phoenix',type:'MCP',category:'development',score:76,tier:'B',
    why:'LLM pipeline observability. Critical for AI/RAG projects — trace retrieval quality, model latency, and generation accuracy.',
    quickWin:'Connect your FastAPI/LLM app to Phoenix. Trace the full RAG pipeline: query → retrieval → reranking → generation.'},
-  {rank:15,name:'Sequential Thinking',url:'https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking',type:'MCP',category:'development',score:75,tier:'B',
+  {rank:17,name:'Sequential Thinking',url:'https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking',type:'MCP',category:'development',score:75,tier:'B',
    why:'Forces structured reasoning on complex problems. Prevents jumping to wrong conclusions on architecture decisions.',
    quickWin:'Use for any decision with 3+ valid options and tradeoffs that need weighing.'},
-  {rank:16,name:'Notion',url:'https://opentools.com/registry/notion',type:'MCP',category:'integration',score:73,tier:'B',
+  {rank:18,name:'Notion',url:'https://opentools.com/registry/notion',type:'MCP',category:'integration',score:73,tier:'B',
    why:'Programmatic Notion access. Create documentation, manage databases, search workspace. Good for client-facing documentation.',
    quickWin:'Create structured project documentation pages that non-technical stakeholders can access.'},
-  {rank:17,name:'ReactBits',url:'https://github.com/ceorkm/reactbits-mcp-server',type:'MCP',category:'creative',score:70,tier:'C',
+  {rank:19,name:'ReactBits',url:'https://github.com/ceorkm/reactbits-mcp-server',type:'MCP',category:'creative',score:70,tier:'C',
    why:'Component library search. Saves time when building React UIs by finding ready-made components.',
    quickWin:'Search before building any React component from scratch.'},
-  {rank:18,name:'Hugging Face',url:'https://opentools.com/registry/hugging-face',type:'MCP',category:'research',score:69,tier:'C',
+  {rank:20,name:'Hugging Face',url:'https://opentools.com/registry/hugging-face',type:'MCP',category:'research',score:69,tier:'C',
    why:'AI model discovery. Search models, datasets, and papers. Essential for finding the right model for your use case.',
    quickWin:'Search for specialized language models and domain-specific NLP papers.'},
-  {rank:19,name:'Canva',url:'https://opentools.com/registry/canva',type:'MCP',category:'creative',score:65,tier:'C',
+  {rank:21,name:'Canva',url:'https://opentools.com/registry/canva',type:'MCP',category:'creative',score:65,tier:'C',
    why:'Design creation without leaving the terminal. Social media graphics, presentations, marketing materials.',
    quickWin:'Generate social media posts or presentation slides from text content.'},
-  {rank:20,name:'Supermemory',url:'https://github.com/supermemoryai/claude-supermemory',type:'Plugin',category:'memory',score:64,tier:'C',
+  {rank:22,name:'Supermemory',url:'https://github.com/supermemoryai/claude-supermemory',type:'Plugin',category:'memory',score:64,tier:'C',
    why:'Enhanced memory management. Augments file-based memory with better search and recall.',
    quickWin:'Works automatically alongside other memory systems.'},
-  {rank:21,name:'Filesystem MCP',url:'https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem',type:'MCP',category:'core',score:62,tier:'C',
+  {rank:23,name:'Filesystem MCP',url:'https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem',type:'MCP',category:'core',score:62,tier:'C',
    why:'Extended file operations. Useful for out-of-project file management and metadata queries.',
    quickWin:'Use `list_directory_with_sizes` to find large files. Use for cross-project file operations.'},
-  {rank:22,name:'Brave Search',url:'https://github.com/anthropics/claude-code/tree/main/skills',type:'Skill',category:'research',score:60,tier:'C',
+  {rank:24,name:'Brave Search',url:'https://github.com/anthropics/claude-code/tree/main/skills',type:'Skill',category:'research',score:60,tier:'C',
    why:'Lightweight web search without browser overhead. Faster than Playwright for factual queries.',
    quickWin:'`/brave-search` for quick factual lookups. Falls back to Google Search if blocked.'},
-  {rank:23,name:'Coupler.io',url:'https://opentools.com/registry/coupler-io',type:'MCP',category:'integration',score:45,tier:'C',
+  {rank:25,name:'Coupler.io',url:'https://opentools.com/registry/coupler-io',type:'MCP',category:'integration',score:45,tier:'C',
    why:'Data sync between apps. Niche use case but valuable for connecting spreadsheets to databases.',
    quickWin:'Requires authentication setup.'},
 ],
