@@ -119,12 +119,12 @@
             <a href="#" onclick="event.preventDefault();showTab('memory')" class="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">Open Memory tab →</a>
           </div>
           <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside ml-1">
-            <li><strong class="text-white">4-tier memory architecture complete.</strong> MEMORY.md index + Obsidian vault + MemPalace + Cognee (3 datasets). Same slug joins all four stores. See Memory System tab for full architecture, pros/cons, and token-savings math.</li>
-            <li><strong class="text-white">Phase 3b — subagent-built knowledge graph.</strong> Dispatched 10 parallel Claude Code subagents over 75 vault files, deduped to <strong>316 entities + 471 edges</strong>, loaded into cognee in ~3 min, $0. Bypasses <code class="mono text-claude-400">cognify()</code> entirely → no Ladybug corruption risk. Pattern reusable; see <code class="mono text-claude-400">subagent-graph-extraction</code> in Plugins tab.</li>
-            <li><strong class="text-white">Phase 3c — Gemini 2.5 Flash Lite wired.</strong> Free-tier AI Studio key powers <code class="mono text-claude-400">SearchType.GRAPH_COMPLETION</code> natural-language graph queries. ~1-2s/call, 1000 RPD ceiling. Embeddings stay on local <code class="mono text-claude-400">nomic-embed-text</code>.</li>
-            <li><strong class="text-white">Autonomous nightly refresh re-enabled.</strong> <code class="mono text-claude-400">cognee-refresh.timer</code> fires daily 10:00 local, runs throttled cognify (12 RPM cap), resumable state file, health-monitored. No GPU fans (cloud LLM means kids stay asleep).</li>
-            <li><strong class="text-white">New entries:</strong> Cognee MCP (memory category, score 88, tier A), Memory System v2 architecture (rank #6, score 90), <code class="mono text-claude-400">subagent-graph-extraction</code> pattern (in plugins/skills). Old MemPalace ranking bumped — now fully integrated, not just installed.</li>
-            <li><strong>Estimated savings:</strong> ~120K tokens/day in averted file re-scans, ~3.6M/month, ~$54/mo equivalent at Opus 4.7 input rates. See Memory System → Token Savings table.</li>
+            <li><strong class="text-white">4-tier memory architecture complete.</strong> Always-loaded index + curated Obsidian vault + MemPalace (episodic) + Cognee (semantic, 3 datasets). Same slug joins all four stores. See Memory System tab for architecture, pros/cons, and token-savings math.</li>
+            <li><strong class="text-white">Subagent-built knowledge graph.</strong> Dispatched ~10 parallel Claude Code subagents over a high-value file subset, deduped to a few hundred entities + edges, loaded into Cognee in ~3 min at $0. Bypasses <code class="mono text-claude-400">cognify()</code> entirely → no graph-DB migration risk. Reusable pattern.</li>
+            <li><strong class="text-white">Cloud LLM wired for NL queries.</strong> A free-tier Gemini model powers <code class="mono text-claude-400">SearchType.GRAPH_COMPLETION</code> natural-language graph queries. ~1-2s/call. Embeddings stay on local <code class="mono text-claude-400">nomic-embed-text</code>.</li>
+            <li><strong class="text-white">Autonomous nightly refresh re-enabled.</strong> Daily systemd timer runs the throttled cognify (well under the free-tier per-minute ceiling), resumable state file, health-monitored. Cloud LLM = no local GPU fans spinning up.</li>
+            <li><strong class="text-white">New entries:</strong> Cognee MCP (memory category, tier A), the 4-tier architecture (rank #6), and a reusable subagent-graph-extraction pattern. MemPalace ranking refreshed now that it's autonomous.</li>
+            <li><strong>Estimated savings:</strong> ~120K tokens/day in averted file re-scans, ~3.6M/month, ~$54/mo equivalent at Opus 4.7 input rates. See Memory System → Token Savings.</li>
           </ul>
         </div>
       </div>
@@ -146,7 +146,7 @@
             <li><strong class="text-white">Edit + prompt-shaping (3):</strong> <code class="mono text-claude-400">image-edit</code> (RunComfy router across Nano Banana / GPT Image 2 Edit / Flux Kontext / Z-Image Inpaint), <code class="mono text-claude-400">imagegen-frontend-mobile</code> (premium phone-mockup mobile UI direction), <code class="mono text-claude-400">imagegen-frontend-web</code> (forces 1 horizontal image per section).</li>
             <li><strong class="text-white">Deterministic renderer (1):</strong> <code class="mono text-claude-400">image</code> from <a href="https://github.com/vercel-labs/json-render" class="text-claude-400 hover:underline" target="_blank">vercel-labs/json-render</a> — JSON spec → SVG/PNG via Satori. Not LLM. Perfect for brand-correct infographics + OG cards.</li>
             <li><em>Dropped:</em> <code class="mono text-claude-400">pilioai/skills/gpt-image-2</code> (3rd-party broker, no advantage over OpenAI direct) + <code class="mono text-claude-400">supercent-io/skills-template/image-generation</code> (Gemini-based — repo 404, taken private or removed).</li>
-            <li><strong>Direct application:</strong> Qponko 1.0.0 has 14 weak marketing graphics flagged in 2026-05-14 audit (5 letterboxed infographs, 6 generic-stickfigure memes, 3 black-blob wear frames). <code class="mono text-claude-400">image-edit</code> + <code class="mono text-claude-400">image</code> (Satori) + GPT Image 2 routes now cover regen end-to-end.</li>
+            <li><strong>Direct application:</strong> A client app launch on 2026-05-14 had 14 weak marketing graphics flagged (5 letterboxed infographs, 6 generic-stickfigure memes, 3 wear-frame issues). <code class="mono text-claude-400">image-edit</code> + <code class="mono text-claude-400">image</code> (Satori) + GPT Image 2 routes cover the regen end-to-end.</li>
           </ul>
         </div>
       </div>
@@ -166,7 +166,7 @@
             <li><strong class="text-white">SEO/GEO/AI-SEO suite</strong> — researched 3 candidate repos, installed 2 (skipped opc-skills as redundant + paywalled).</li>
             <li><strong class="text-white">Primary: <code class="mono text-claude-400">geo-seo</code></strong> from <a href="https://github.com/zubair-trabzada/geo-seo-claude" class="text-claude-400 hover:underline" target="_blank">zubair-trabzada/geo-seo-claude</a> — 15 skills + 5 subagents + 6 ready JSON-LD templates (LocalBusiness with openingHoursSpecification, areaServed, aggregateRating). Includes runnable Python: citability scorer, llms.txt generator, brand scanner, PDF report builder. MIT.</li>
             <li><strong class="text-white">Secondary: <code class="mono text-claude-400">aaron-seo</code></strong> from <a href="https://github.com/aaron-he-zhu/seo-geo-claude-skills" class="text-claude-400 hover:underline" target="_blank">aaron-he-zhu/seo-geo-claude-skills</a> — selective install of 6 skills (technical-seo-checker, on-page-auditor, keyword-research, schema-markup, meta-tags, geo-content-optimizer). <em>Skipped:</em> 14 third-party MCP servers, 8 hooks, 17 commands tied to a memory-management framework — too heavy for a 5-page site.</li>
-            <li><strong class="text-white">Software Mansion RN skills (4)</strong> from <a href="https://github.com/software-mansion/skills" class="text-claude-400 hover:underline" target="_blank">software-mansion/skills</a> — installed 2026-04-28 for CasPosla + Qponko. Reanimated, Gesture Handler, Radon IDE, TypeGPU.</li>
+            <li><strong class="text-white">Software Mansion RN skills (4)</strong> from <a href="https://github.com/software-mansion/skills" class="text-claude-400 hover:underline" target="_blank">software-mansion/skills</a> — installed 2026-04-28 for React Native client work. Reanimated, Gesture Handler, Radon IDE, TypeGPU.</li>
             <li><strong>Workflow:</strong> 12-step audit pipeline — see Skills tab → search "geo".</li>
           </ul>
         </div>
@@ -187,7 +187,7 @@
             <li>Evaluated 15 candidate tools/skills — full report in session memory. <strong class="text-white">Net: 7 cherry-picked skills installed, 10 skipped</strong> (security or redundancy reasons).</li>
             <li><strong class="text-white">gstack cherry-picks (4)</strong> from <a href="https://github.com/garrytan/gstack" class="text-claude-400 hover:underline" target="_blank">garrytan/gstack</a>: <code class="mono text-claude-400">/cso</code> (OWASP+STRIDE), <code class="mono text-claude-400">/qa</code> (test+fix loop), <code class="mono text-claude-400">/canary</code> (post-deploy watch), <code class="mono text-claude-400">/land-and-deploy</code> (merge→CI→deploy→verify). <em>Skipped the other 19 skills + setup script + auto-updater</em> (SuperClaude overlap, supply-chain risk).</li>
             <li><strong class="text-white">addyosmani cherry-picks (3)</strong> from <a href="https://github.com/addyosmani/agent-skills" class="text-claude-400 hover:underline" target="_blank">addyosmani/agent-skills</a>: <code class="mono text-claude-400">frontend-ui-engineering</code>, <code class="mono text-claude-400">browser-testing-with-devtools</code>, <code class="mono text-claude-400">incremental-implementation</code>. <em>Skipped 18 other skills</em> (redundant with superpowers/SuperClaude).</li>
-            <li><strong class="text-white">ship-safe</strong> (<code class="mono text-claude-400">npx ship-safe audit .</code>) — used for one-shot Spektrum audit, not installed persistently. Score 13/100 (~75% false-positive noise; 4 real P0s triaged for Phase A fixes).</li>
+            <li><strong class="text-white">ship-safe</strong> (<code class="mono text-claude-400">npx ship-safe audit .</code>) — used for a one-shot client audit, not installed persistently. Noisy (~75% false positives), but useful first-pass triage.</li>
             <li><strong>Skipped:</strong> Continuous-Claude-v3, refactoring-ui skill, react-code-fix-linter, nagual-qe, everything-claude-code, Agent-Reach, timesfm, claude-mem, Decepticon, and gstack setup/auto-updater. Reasons: RTK/SuperClaude/memory-system redundancy, supply-chain risk, or offensive-security tooling.</li>
           </ul>
         </div>
@@ -328,7 +328,7 @@
         <div class="flex-1">
           <h3 class="text-sm font-semibold text-white mb-2">TL;DR</h3>
           <p class="text-xs text-gray-300 leading-relaxed">
-            4 cooperating stores, each with one job. <strong class="text-white">Tier 1</strong> is the always-loaded index (95 lines, ~2K tokens). <strong class="text-white">Tier 2</strong> is the curated Obsidian vault (210+ files of decisions, sessions, references). <strong class="text-white">Tier 3</strong> is MemPalace — every Claude Code conversation mined automatically into a verbatim store. <strong class="text-white">Tier 4</strong> is Cognee — three datasets giving chunk recall, slug-keyed graph traversal, and natural-language graph queries via Gemini. The join key across all tiers is the entity slug (<code class="mono text-xs text-claude-400">spektrum</code>, <code class="mono text-xs text-claude-400">qponko</code>, etc.) — same name = same project everywhere.
+            4 cooperating stores, each with one job. <strong class="text-white">Tier 1</strong> is the always-loaded index (~95 lines, ~2K tokens). <strong class="text-white">Tier 2</strong> is a curated Obsidian vault of decisions, sessions, and references. <strong class="text-white">Tier 3</strong> is MemPalace — every Claude Code conversation mined automatically into a verbatim store. <strong class="text-white">Tier 4</strong> is Cognee — three datasets giving chunk recall, slug-keyed graph traversal, and natural-language graph queries via an LLM. The join key across all tiers is the entity slug — same name = same entity everywhere.
           </p>
         </div>
       </div>
@@ -343,11 +343,11 @@
           <span class="text-[10px] px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 font-medium">TIER 1</span>
           <h4 class="font-semibold text-white">HOT — Always loaded</h4>
         </div>
-        <p class="text-xs text-gray-400 mb-3"><code class="mono text-claude-400">MEMORY.md</code> at <code class="mono">~/.claude/projects/-home-kaizenlinux/memory/</code></p>
+        <p class="text-xs text-gray-400 mb-3"><code class="mono text-claude-400">MEMORY.md</code> in Claude Code's per-project memory directory</p>
         <ul class="text-xs text-gray-300 space-y-1 mb-3 list-disc list-inside">
           <li>~95 lines, ~2K tokens, injected into every session by Claude Code</li>
-          <li>Index only: one line per project + pointer to the topic file</li>
-          <li>Active projects · Paused · Archived · Feedback rules · References · Sessions · Meta</li>
+          <li>Index only: one line per topic + pointer to the detail file</li>
+          <li>Sections: active items · paused · archived · workflow rules · references · sessions · meta</li>
         </ul>
         <p class="text-[11px] text-gray-500"><strong class="text-gray-400">Job:</strong> tell Claude what exists. Detail lives elsewhere.</p>
       </div>
@@ -357,13 +357,13 @@
           <span class="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-300 font-medium">TIER 2</span>
           <h4 class="font-semibold text-white">WARM — Curated vault</h4>
         </div>
-        <p class="text-xs text-gray-400 mb-3">Obsidian vault, 210+ files at the same path (symlinked to Windows NTFS for Obsidian.app)</p>
+        <p class="text-xs text-gray-400 mb-3">Obsidian vault, hundreds of markdown files. Vault lives on the OS-native filesystem (symlinked when Linux/WSL talks to it from a Windows-side Obsidian.app).</p>
         <ul class="text-xs text-gray-300 space-y-1 mb-3 list-disc list-inside">
-          <li><code class="mono text-claude-400">10-Projects-Active/</code> — one file per live project</li>
+          <li><code class="mono text-claude-400">10-Projects-Active/</code> — one file per live item</li>
           <li><code class="mono text-claude-400">20-Projects-Paused/</code> · <code class="mono text-claude-400">30-Projects-Archived/</code></li>
           <li><code class="mono text-claude-400">40-Sessions/</code> — dated session logs</li>
           <li><code class="mono text-claude-400">50-Feedback/</code> — workflow rules + decisions</li>
-          <li><code class="mono text-claude-400">60-Reference/</code> — credentials, configs, install notes</li>
+          <li><code class="mono text-claude-400">60-Reference/</code> — configs, install notes, credential pointers</li>
           <li><code class="mono text-claude-400">70-People/</code> · <code class="mono text-claude-400">90-Meta/</code> · <code class="mono text-claude-400">00-Inbox/</code></li>
         </ul>
         <p class="text-[11px] text-gray-500"><strong class="text-gray-400">Job:</strong> rich, human-readable narrative. Read on demand via <code class="mono">Read</code>.</p>
@@ -374,13 +374,12 @@
           <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-medium">TIER 3</span>
           <h4 class="font-semibold text-white">EPISODIC — MemPalace</h4>
         </div>
-        <p class="text-xs text-gray-400 mb-3"><code class="mono text-claude-400">~/.mempalace/</code> · ChromaDB + SQLite KG · 17K+ drawers</p>
+        <p class="text-xs text-gray-400 mb-3"><code class="mono text-claude-400">~/.mempalace/</code> · ChromaDB + SQLite knowledge graph · tens of thousands of drawers</p>
         <ul class="text-xs text-gray-300 space-y-1 mb-3 list-disc list-inside">
           <li>Every Claude Code session JSONL transcript auto-mined</li>
-          <li>Wings = cwd (e.g. <code class="mono text-claude-400">Projects_Luka_Projects_LukaPr_Trisha_Berbernica</code>)</li>
-          <li>Rooms = extracted memory type (decision, problem, milestone, preference)</li>
+          <li>Wings = working directory; Rooms = extracted memory type (decision, problem, milestone, preference)</li>
           <li>Hybrid scheduling: <code class="mono">SessionEnd</code> hook + 6h systemd timer + hourly health watchdog</li>
-          <li><code class="mono">flock</code>-protected · size:mtime idempotency · alert dropped to <code class="mono">00-Inbox/</code> if stale &gt;48h</li>
+          <li><code class="mono">flock</code>-protected · size:mtime idempotency · alert dropped to vault inbox if stale &gt;48h</li>
         </ul>
         <p class="text-[11px] text-gray-500"><strong class="text-gray-400">Job:</strong> "what did we discuss about X?" Answers from verbatim history.</p>
       </div>
@@ -392,11 +391,11 @@
         </div>
         <p class="text-xs text-gray-400 mb-3"><code class="mono text-claude-400">~/.cognee/</code> · LanceDB + Ladybug + SQLite</p>
         <ul class="text-xs text-gray-300 space-y-1 mb-3 list-disc list-inside">
-          <li><code class="mono text-claude-400">vault_3a</code> — chunks + embeddings, 217 files via local <code class="mono">nomic-embed-text</code>. <strong>CHUNKS</strong> search.</li>
-          <li><code class="mono text-claude-400">vault_3b</code> — 316 entities + 471 edges from 10 parallel Claude subagents. Controlled vocab (Project, Tool, Decision, Issue, …). $0.</li>
-          <li><code class="mono text-claude-400">vault_full_gemini</code> — native <code class="mono">cognify()</code> via Gemini 2.5 Flash Lite. Powers <strong>GRAPH_COMPLETION</strong> natural-language queries. Daily refresh via systemd timer.</li>
+          <li><strong>Chunks dataset</strong> — embeddings of the whole vault via local <code class="mono">nomic-embed-text</code>. <strong>CHUNKS</strong> search.</li>
+          <li><strong>Subagent graph dataset</strong> — entities + edges built one-shot by ~10 parallel Claude Code subagents with a controlled vocabulary. $0.</li>
+          <li><strong>Cognified graph dataset</strong> — native <code class="mono">cognify()</code> via a cloud LLM on a free tier. Powers <strong>GRAPH_COMPLETION</strong> natural-language queries. Daily refresh via systemd timer.</li>
         </ul>
-        <p class="text-[11px] text-gray-500"><strong class="text-gray-400">Job:</strong> "Which projects use Vercel?" "What blocks Plumbline?" Cross-project semantic recall.</p>
+        <p class="text-[11px] text-gray-500"><strong class="text-gray-400">Job:</strong> cross-cutting questions like "which items share infrastructure X?" or "what's blocking item Y?" Answered in 1-2 seconds.</p>
       </div>
     </div>
 
@@ -404,25 +403,26 @@
     <h3 class="text-lg font-semibold text-white mb-4">How a Query Flows</h3>
     <div class="glass rounded-xl p-5 mb-8">
       <pre class="mono text-[11px] text-gray-300 leading-relaxed overflow-x-auto">
-User asks: <span class="text-claude-400">"Which credentials exist for Spektrum?"</span>
+User asks: <span class="text-claude-400">"What credentials exist for &lt;item&gt;?"</span>
 
   1. Tier 1 (free) — MEMORY.md is already in context. Index shows
-     spektrum is an active project. Cost: 0 extra tokens.
+     the item exists and where its detail file lives.
+     Cost: 0 extra tokens.
 
-  2. Tier 2 → <code class="text-blue-400">Read 60-Reference/reference_spektrum_client_credentials.md</code>
+  2. Tier 2 → <code class="text-blue-400">Read 60-Reference/&lt;the credential pointer&gt;.md</code>
      when the question is targeted. ~2K tokens for the specific file.
 
   3. Tier 4 → <code class="text-purple-400">cognee.search(q, SearchType.GRAPH_COMPLETION)</code>
-     when the question spans projects. Gemini traverses the graph,
-     returns a natural-language answer with cited entities. ~500 tokens
-     in, ~200 out, 1-2s latency.
+     when the question spans items. The LLM traverses the graph and
+     returns a natural-language answer with cited entities. ~500 in,
+     ~200 out, 1-2s latency.
 
   4. Tier 3 → <code class="text-cyan-400">mempalace_search(q)</code> when the question is
-     <em>historical</em> ("what did we decide on Spektrum auth in March?").
+     <em>historical</em> ("what did we decide about X in March?").
      Returns matching conversation chunks with timestamps.
 
-The 4 tiers compose. Same slug <code class="text-claude-400">spektrum</code> resolves the
-same project across all four stores — that's the join key.</pre>
+The 4 tiers compose. Same slug resolves the same entity across all
+four stores — that's the join key.</pre>
     </div>
 
     <!-- Pros / Cons -->
@@ -434,14 +434,14 @@ same project across all four stores — that's the join key.</pre>
           PROS
         </h4>
         <ul class="text-xs text-gray-300 space-y-2 list-disc list-inside">
-          <li><strong class="text-white">Persistent across sessions.</strong> New Claude session = full project context loaded in 2K tokens.</li>
-          <li><strong class="text-white">No re-explaining.</strong> The "what is Spektrum?" answer survives across days and machines.</li>
-          <li><strong class="text-white">Cross-project recall.</strong> "Which of my projects deploy on Vercel?" answers in 1 query.</li>
-          <li><strong class="text-white">Autonomous maintenance.</strong> MemPalace mines on every session end; Gemini cognify refreshes daily.</li>
-          <li><strong class="text-white">$0 cost.</strong> Local embeddings, Gemini free tier, Claude Max plan for subagent extraction.</li>
-          <li><strong class="text-white">No corruption path.</strong> Cloud LLM means no Ladybug v40 bug; subagents bypass <code class="mono">cognify()</code> entirely.</li>
+          <li><strong class="text-white">Persistent across sessions.</strong> New Claude session = full context loaded in 2K tokens.</li>
+          <li><strong class="text-white">No re-explaining.</strong> "What is &lt;item&gt;?" answers survive across days and machines.</li>
+          <li><strong class="text-white">Cross-cutting recall.</strong> "Which items share infrastructure X?" answers in 1 query.</li>
+          <li><strong class="text-white">Autonomous maintenance.</strong> MemPalace mines on every session end; the graph refreshes daily.</li>
+          <li><strong class="text-white">$0 cost.</strong> Local embeddings + free-tier cloud LLM + Claude Max plan for subagent extraction.</li>
+          <li><strong class="text-white">No corruption path.</strong> Cloud LLM means no graph-DB migration bugs; subagents bypass <code class="mono">cognify()</code> entirely.</li>
           <li><strong class="text-white">Idempotent + resumable.</strong> Daily timer picks up where yesterday's quota ran out.</li>
-          <li><strong class="text-white">Obsidian-native.</strong> Vault is browseable, editable, searchable in Obsidian.app on Windows.</li>
+          <li><strong class="text-white">Obsidian-native.</strong> Vault is browseable, editable, searchable in Obsidian.app.</li>
         </ul>
       </div>
 
@@ -451,12 +451,12 @@ same project across all four stores — that's the join key.</pre>
           CONS
         </h4>
         <ul class="text-xs text-gray-300 space-y-2 list-disc list-inside">
-          <li><strong class="text-white">Setup is non-trivial.</strong> 4 stores, 6 scripts, 3 systemd units, 2 hooks. Worth it once running.</li>
-          <li><strong class="text-white">Stale data risk.</strong> A memory written 39 days ago about code may no longer reflect reality. Mitigation: verify against current code before asserting.</li>
-          <li><strong class="text-white">Naming drift.</strong> If a project rename isn't propagated to the vault slug, the graph join breaks. Manual cleanup needed.</li>
-          <li><strong class="text-white">Gemini daily ceiling.</strong> ~1000 RPD on free tier — full vault refresh may take 2-3 days to converge after big vault changes.</li>
-          <li><strong class="text-white">Tier 4 cognify NOT idempotent across runs.</strong> Re-running cognify on the same files produces slightly different entities (LLM variance). State file mitigates the rerun cost.</li>
-          <li><strong class="text-white">Single-machine.</strong> Vault is symlinked to Windows NTFS; portable to other Linux machines only with the symlink redone.</li>
+          <li><strong class="text-white">Setup is non-trivial.</strong> 4 stores, ~6 scripts, ~3 systemd units, 2 Claude Code hooks. Worth it once running.</li>
+          <li><strong class="text-white">Stale data risk.</strong> A memory written weeks ago about code may no longer reflect reality. Mitigation: verify against current code before asserting.</li>
+          <li><strong class="text-white">Naming drift.</strong> If an item is renamed but the vault slug isn't, the graph join breaks. Manual cleanup needed.</li>
+          <li><strong class="text-white">Free-tier daily ceiling.</strong> Cloud LLM limits cap how fast big changes propagate — a full refresh may take 2-3 days after a major vault rewrite.</li>
+          <li><strong class="text-white">Tier 4 cognify isn't bit-for-bit idempotent.</strong> Re-running on the same files produces slightly different entities (LLM variance). State file mitigates the rerun cost.</li>
+          <li><strong class="text-white">Single-machine.</strong> Portable to other machines only with the symlink and systemd units redeployed.</li>
           <li><strong class="text-white">Memory ≠ truth.</strong> Always verify before acting — a memory is a point-in-time observation, not live state.</li>
         </ul>
       </div>
@@ -479,25 +479,25 @@ same project across all four stores — that's the join key.</pre>
           </thead>
           <tbody class="text-gray-300">
             <tr class="border-b border-surface-700/30">
-              <td class="py-2 pr-4">Session start (any project)</td>
+              <td class="py-2 pr-4">Session start (any context)</td>
               <td class="text-right py-2 pr-4 mono">~50,000 tok<br><span class="text-[10px] text-gray-500">read CLAUDE.md + scan top-level + read recent commits</span></td>
               <td class="text-right py-2 pr-4 mono">~2,000 tok<br><span class="text-[10px] text-gray-500">MEMORY.md auto-loaded</span></td>
               <td class="text-right py-2 mono text-green-400">96%</td>
             </tr>
             <tr class="border-b border-surface-700/30">
-              <td class="py-2 pr-4">"What's the status of Spektrum?"</td>
-              <td class="text-right py-2 pr-4 mono">~80,000 tok<br><span class="text-[10px] text-gray-500">read entire Spektrum repo + sessions</span></td>
-              <td class="text-right py-2 pr-4 mono">~4,000 tok<br><span class="text-[10px] text-gray-500">Read 1 project file + 1 session log</span></td>
+              <td class="py-2 pr-4">"What's the status of &lt;item&gt;?"</td>
+              <td class="text-right py-2 pr-4 mono">~80,000 tok<br><span class="text-[10px] text-gray-500">read entire repo + recent session logs</span></td>
+              <td class="text-right py-2 pr-4 mono">~4,000 tok<br><span class="text-[10px] text-gray-500">Read 1 detail file + 1 session log</span></td>
               <td class="text-right py-2 mono text-green-400">95%</td>
             </tr>
             <tr class="border-b border-surface-700/30">
-              <td class="py-2 pr-4">"Which projects deploy on Vercel?"</td>
-              <td class="text-right py-2 pr-4 mono">~400,000 tok<br><span class="text-[10px] text-gray-500">grep + read every project file</span></td>
-              <td class="text-right py-2 pr-4 mono">~600 tok<br><span class="text-[10px] text-gray-500">Tier 4 GRAPH_COMPLETION (Gemini)</span></td>
+              <td class="py-2 pr-4">"Which items share infrastructure X?"</td>
+              <td class="text-right py-2 pr-4 mono">~400,000 tok<br><span class="text-[10px] text-gray-500">grep + read every detail file</span></td>
+              <td class="text-right py-2 pr-4 mono">~600 tok<br><span class="text-[10px] text-gray-500">Tier 4 GRAPH_COMPLETION (cloud LLM)</span></td>
               <td class="text-right py-2 mono text-green-400">99.85%</td>
             </tr>
             <tr class="border-b border-surface-700/30">
-              <td class="py-2 pr-4">"Why did we choose qwen3.5 over deepseek?"</td>
+              <td class="py-2 pr-4">"Why did we choose option A over B?"</td>
               <td class="text-right py-2 pr-4 mono">∞<br><span class="text-[10px] text-gray-500">unrecoverable — original chat gone</span></td>
               <td class="text-right py-2 pr-4 mono">~1,500 tok<br><span class="text-[10px] text-gray-500">Tier 3 MemPalace recall</span></td>
               <td class="text-right py-2 mono text-green-400">∞</td>
@@ -505,7 +505,7 @@ same project across all four stores — that's the join key.</pre>
             <tr class="border-b border-surface-700/30">
               <td class="py-2 pr-4">Resume an interrupted refactor</td>
               <td class="text-right py-2 pr-4 mono">~30,000 tok<br><span class="text-[10px] text-gray-500">re-read diffs + reconstruct state</span></td>
-              <td class="text-right py-2 pr-4 mono">~3,000 tok<br><span class="text-[10px] text-gray-500">read session log + last project state</span></td>
+              <td class="text-right py-2 pr-4 mono">~3,000 tok<br><span class="text-[10px] text-gray-500">read session log + last detail state</span></td>
               <td class="text-right py-2 mono text-green-400">90%</td>
             </tr>
           </tbody>
@@ -533,34 +533,24 @@ same project across all four stores — that's the join key.</pre>
     </div>
 
     <!-- Components table -->
-    <h3 class="text-lg font-semibold text-white mb-4">Components &amp; Files</h3>
+    <h3 class="text-lg font-semibold text-white mb-4">Components by Tier</h3>
     <div class="glass rounded-xl p-5 mb-8 overflow-x-auto">
       <table class="w-full text-xs">
         <thead>
           <tr class="border-b border-surface-700/50 text-gray-400">
-            <th class="text-left py-2 pr-4">Path</th>
             <th class="text-left py-2 pr-4">Tier</th>
+            <th class="text-left py-2 pr-4">Components</th>
             <th class="text-left py-2">Role</th>
           </tr>
         </thead>
         <tbody class="text-gray-300">
-          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono text-claude-400">~/.claude/projects/-home-kaizenlinux/memory/MEMORY.md</td><td class="py-2 pr-4">1</td><td>Auto-loaded index</td></tr>
-          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono text-claude-400">~/.claude/projects/-home-kaizenlinux/memory/*/</td><td class="py-2 pr-4">2</td><td>Vault directories (Obsidian)</td></tr>
-          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">/mnt/c/Users/Kaizen/Obsidian/memory/</td><td class="py-2 pr-4">2</td><td>Physical NTFS location (symlinked)</td></tr>
-          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono text-claude-400">~/.mempalace/</td><td class="py-2 pr-4">3</td><td>ChromaDB + KG store</td></tr>
-          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">~/.mempalace/lib/session-mine.sh</td><td class="py-2 pr-4">3</td><td>Per-session miner (hook)</td></tr>
-          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">~/.mempalace/lib/full-sweep.sh</td><td class="py-2 pr-4">3</td><td>6h safety-net sweep</td></tr>
-          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">systemd: mempalace-mine.timer</td><td class="py-2 pr-4">3</td><td>Scheduled mining</td></tr>
-          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">systemd: mempalace-health.timer</td><td class="py-2 pr-4">3</td><td>Hourly health check</td></tr>
-          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono text-claude-400">~/.cognee/</td><td class="py-2 pr-4">4</td><td>Graph DB + LanceDB + SQLite</td></tr>
-          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">~/cognee/cognee-mcp/vault_ingest_3a.py</td><td class="py-2 pr-4">4</td><td>Phase 3a chunks ingest</td></tr>
-          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">~/cognee/cognee-mcp/extract_schema.md</td><td class="py-2 pr-4">4</td><td>Phase 3b subagent prompt spec</td></tr>
-          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">~/cognee/cognee-mcp/load_subagent_graph.py</td><td class="py-2 pr-4">4</td><td>Phase 3b loader (entity/edge → graph)</td></tr>
-          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">~/cognee/cognee-mcp/cognify_full_vault_gemini.py</td><td class="py-2 pr-4">4</td><td>Phase 3c throttled Gemini runner</td></tr>
-          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 mono">~/cognee/cognee-mcp/cognee-refresh.sh</td><td class="py-2 pr-4">4</td><td>Daily refresh wrapper</td></tr>
-          <tr><td class="py-2 pr-4 mono">systemd: cognee-refresh.timer</td><td class="py-2 pr-4">4</td><td>Daily refresh @ 10:00 local</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 align-top"><span class="text-[10px] px-2 py-0.5 rounded-full bg-red-500/20 text-red-300">1 HOT</span></td><td class="py-2 pr-4">A single <code class="mono text-claude-400">MEMORY.md</code> file in Claude Code's per-project memory directory.</td><td class="py-2">Always-loaded index, ~95 lines, ~2K tokens.</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 align-top"><span class="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-300">2 WARM</span></td><td class="py-2 pr-4">An Obsidian vault, opened from the same path. On WSL2, the vault is symlinked to a Windows-side NTFS folder so Obsidian.app can read/write it natively.</td><td class="py-2">Curated, human-readable markdown — decisions, session logs, references.</td></tr>
+          <tr class="border-b border-surface-700/30"><td class="py-2 pr-4 align-top"><span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300">3 EPISODIC</span></td><td class="py-2 pr-4"><code class="mono text-claude-400">~/.mempalace/</code> (ChromaDB + SQLite KG) · <code class="mono">session-mine.sh</code> Claude Code hook · <code class="mono">full-sweep.sh</code> 6h safety-net script · two systemd user timers (<code class="mono">mempalace-mine</code> + <code class="mono">mempalace-health</code>).</td><td class="py-2">Verbatim conversation memory, mined automatically.</td></tr>
+          <tr><td class="py-2 pr-4 align-top"><span class="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300">4 SEMANTIC</span></td><td class="py-2 pr-4"><code class="mono text-claude-400">~/.cognee/</code> (Ladybug + LanceDB + SQLite) · a chunks-only ingest script · a subagent-graph loader · a throttled cloud-LLM cognify runner · a daily refresh wrapper · the <code class="mono">cognee-refresh</code> systemd timer.</td><td class="py-2">Three coexisting datasets for chunk recall, structural graph traversal, and natural-language graph queries.</td></tr>
         </tbody>
       </table>
+      <p class="text-[11px] text-gray-500 mt-3">Exact file paths and script names are kept private — they reflect a particular workstation layout. The architecture above is what's portable.</p>
     </div>
 
     <!-- Bottom callout -->
@@ -568,20 +558,20 @@ same project across all four stores — that's the join key.</pre>
       <h3 class="text-sm font-semibold text-white mb-3">Failure Modes &amp; Recovery</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-gray-300">
         <div>
-          <p class="font-semibold text-blue-300 mb-1">Symptom: MEMPALACE_HEALTH_ALERT.md in inbox</p>
-          <p class="text-gray-400">→ Mining stalled &gt;48h. Run <code class="mono text-claude-400">journalctl --user -u mempalace-mine.service</code>, then manual <code class="mono">bash ~/.mempalace/lib/full-sweep.sh</code>.</p>
+          <p class="font-semibold text-blue-300 mb-1">Symptom: MemPalace health alert in vault inbox</p>
+          <p class="text-gray-400">→ Mining stalled &gt;48h. Inspect the mining service logs, then manually run the full-sweep script.</p>
         </div>
         <div>
-          <p class="font-semibold text-blue-300 mb-1">Symptom: COGNEE_REFRESH_ALERT.md in inbox</p>
-          <p class="text-gray-400">→ Refresh failed &gt;72h. Check <code class="mono text-claude-400">~/.cognee/cognify_full_vault.log</code>. If quota-only, wait for next UTC day.</p>
+          <p class="font-semibold text-blue-300 mb-1">Symptom: Cognee refresh alert in vault inbox</p>
+          <p class="text-gray-400">→ Refresh failed &gt;72h. Check the refresh log; if it's a quota-only stop, wait for the next UTC day reset.</p>
         </div>
         <div>
-          <p class="font-semibold text-blue-300 mb-1">Symptom: cognee.recall returns "NoneType.id"</p>
+          <p class="font-semibold text-blue-300 mb-1">Symptom: <code class="mono">cognee.recall</code> returns "NoneType.id"</p>
           <p class="text-gray-400">→ MCP server started before any user existed. Restart Claude Code session.</p>
         </div>
         <div>
-          <p class="font-semibold text-blue-300 mb-1">Symptom: stale memory contradicts reality</p>
-          <p class="text-gray-400">→ Memory ≠ truth. Verify against current code, update or delete the bad memory.</p>
+          <p class="font-semibold text-blue-300 mb-1">Symptom: a memory contradicts reality</p>
+          <p class="text-gray-400">→ Memory ≠ truth. Verify against current code, then update or delete the stale memory.</p>
         </div>
       </div>
     </div>
@@ -679,7 +669,7 @@ mcpServers: [
   {id:'playwright',url:'https://github.com/microsoft/playwright-mcp',name:'Playwright',url:'https://github.com/microsoft/playwright-mcp',desc:'Browser automation: navigate pages, click elements, fill forms, take screenshots, evaluate JS. Headless mode.',category:'automation',tools:20,
    guide:'Playwright gives Claude real browser capabilities for testing and web interaction.\n\n**Best uses:**\n- E2E testing of web apps during development\n- Taking screenshots for visual verification\n- Filling forms and testing user flows\n- Extracting data from dynamic web pages\n- Debugging UI issues with live snapshots\n\n**How to trigger:** "Open localhost:&lt;port&gt; and test the login flow" or "Take a screenshot of the dashboard."\n\n**Pro tip:** Use `browser_snapshot` for accessibility-tree based interaction (faster, more reliable than screenshots). Chain navigation + assertions for automated testing.'},
   {id:'memory',url:'https://github.com/modelcontextprotocol/servers/tree/main/src/memory',name:'Memory (Knowledge Graph)',url:'https://github.com/modelcontextprotocol/servers/tree/main/src/memory',desc:'Persistent entity-relationship knowledge graph. Store facts, create relationships, search across sessions.',category:'memory',tools:10,
-   guide:'The Memory MCP stores structured knowledge as entities and relationships in a persistent graph.\n\n**Best uses:**\n- Track entities: people, projects, technologies, decisions\n- Map relationships between concepts\n- Build up project knowledge over time\n- Query "what do I know about X?"\n\n**How it differs from file memory:** File memory (MEMORY.md) is curated narrative. This is structured triples (Entity → Relation → Entity).\n\n**How it differs from MemPalace:** MemPalace stores verbatim conversations. This stores distilled facts.\n\n**Pro tip:** Use for persistent facts that span projects. "Kaizen uses Next.js 16 for your project" type knowledge.'},
+   guide:'The Memory MCP stores structured knowledge as entities and relationships in a persistent graph.\n\n**Best uses:**\n- Track entities: people, projects, technologies, decisions\n- Map relationships between concepts\n- Build up project knowledge over time\n- Query "what do I know about X?"\n\n**How it differs from file memory:** File memory (MEMORY.md) is curated narrative. This is structured triples (Entity → Relation → Entity).\n\n**How it differs from MemPalace:** MemPalace stores verbatim conversations. This stores distilled facts.\n\n**Pro tip:** Use for persistent facts that span projects. "Project X uses framework Y" type knowledge that you want to query later.'},
   {id:'sequential-thinking',url:'https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking',name:'Sequential Thinking',url:'https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking',desc:'Step-by-step reasoning for complex problems. Structured thought chains with revision capability.',category:'development',tools:1,
    guide:'Sequential Thinking forces structured, step-by-step reasoning for complex problems.\n\n**Best uses:**\n- Architecture decisions with many tradeoffs\n- Debugging multi-step issues\n- Planning complex migrations\n- Any problem where jumping to a solution is risky\n\n**How to trigger:** "Think through this step by step" or for complex problems, it may be invoked automatically.\n\n**Pro tip:** Best for problems with dependencies between decisions. For simpler problems, direct reasoning is faster.'},
   {id:'filesystem',url:'https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem',name:'Filesystem',desc:'Direct filesystem access: read, write, search, create directories, get file info, list with sizes.',category:'core',tools:14,
@@ -710,8 +700,8 @@ mcpServers: [
    guide:'Install method: `uvx excel-mcp-server stdio` — no Python venv needed.\n\n**Best uses:**\n- Bulk-edit spreadsheets programmatically\n- Generate reports with formulas/charts\n- Parse large workbooks too big for Read\n\n**Pair with:** `document-skills:xlsx` skill for authoring patterns.'},
   {id:'code-review-graph',url:'https://github.com/code-review-graph/code-review-graph',name:'Code Review Graph',desc:'Knowledge-graph-backed code review. semantic_search_nodes, detect_changes, get_impact_radius, query_graph — faster than Grep for large repos.',category:'development',tools:'many',new:true,
    guide:'Install: `pipx install code-review-graph && code-review-graph install --platform claude-code` then `code-review-graph build` in a repo.\n\n**Prefer over Grep/Glob when:**\n- Exploring unfamiliar code\n- Assessing change blast radius\n- Reviewing diffs with structural context\n- Finding callers/callees/tests\n\n**Auto-updates** via file-change hooks installed at `~/.claude/settings.json`.'},
-  {id:'cognee',url:'https://github.com/topoteretes/cognee',name:'Cognee (Tier 4 memory)',desc:'AI memory platform: 3 datasets (chunks, subagent-built graph, Gemini-cognified graph) over the Obsidian vault. Powers cross-project NL queries via GRAPH_COMPLETION. Daily systemd refresh on free Gemini tier.',category:'memory',tools:'many',new:true,
-   guide:'**What it does:** ECL pipeline (Extract → Cognify → Load). Stores embeddings in LanceDB + knowledge graph in Ladybug + metadata in SQLite. We run it locally for vault memory.\n\n**Our 3 datasets:**\n- `vault_3a` — chunks + embeddings (local nomic-embed-text), all 217 files. SearchType.CHUNKS.\n- `vault_3b` — 316 entities + 471 edges, built one-shot by 10 parallel Claude Code subagents using a controlled vocabulary. $0.\n- `vault_full_gemini` — native cognify() via Gemini 2.5 Flash Lite, autonomous daily refresh.\n\n**Query paths:**\n- `cognee.search(q, SearchType.CHUNKS)` — vector recall, no LLM needed.\n- `cognee.search(q, SearchType.GRAPH_COMPLETION)` — natural-language answers over the graph (Gemini).\n- Direct: `graph_engine.extract_node(uuid5(slug))`, `get_neighbors`, `get_edges`.\n\n**Refresh:** `systemctl --user list-timers cognee-refresh.timer` — fires daily at 10:00 local.\n\n**Why three datasets?** Different recall modes. Chunks for fuzzy semantic search. Subagent graph for deterministic structural traversal. Gemini graph for the rich, LLM-extracted version that powers NL queries.\n\n**See:** Memory System tab for the full architecture.'},
+  {id:'cognee',url:'https://github.com/topoteretes/cognee',name:'Cognee (Tier 4 memory)',desc:'AI memory platform. We run it locally over our Obsidian vault to power cross-cutting NL queries via SearchType.GRAPH_COMPLETION. Three coexisting datasets (chunks, subagent-built graph, cloud-cognified graph). Autonomous daily refresh on a free-tier cloud LLM.',category:'memory',tools:'many',new:true,
+   guide:'**What it does:** ECL pipeline (Extract → Cognify → Load). Stores embeddings in LanceDB + knowledge graph in Ladybug + metadata in SQLite.\n\n**Three coexisting datasets pattern:**\n- *Chunks dataset* — embeddings of the whole vault via a local embedder. SearchType.CHUNKS.\n- *Subagent graph dataset* — entities + edges built one-shot by ~10 parallel Claude Code subagents using a controlled vocabulary. $0.\n- *Cognified graph dataset* — native `cognify()` via a free-tier cloud LLM, autonomous daily refresh.\n\n**Query paths:**\n- `cognee.search(q, SearchType.CHUNKS)` — vector recall, no LLM needed.\n- `cognee.search(q, SearchType.GRAPH_COMPLETION)` — natural-language answers over the graph (cloud LLM).\n- Direct: `graph_engine.extract_node(uuid5(slug))`, `get_neighbors`, `get_edges`.\n\n**Refresh:** systemd timer fires daily. Throttled so it stays under the LLM\'s free-tier ceiling.\n\n**Why three datasets?** Different recall modes. Chunks for fuzzy semantic search. Subagent graph for deterministic structural traversal. Cognified graph for the rich, LLM-extracted version that powers NL queries.\n\n**See:** Memory System tab for the full architecture.'},
 ],
 
 plugins: [
@@ -744,7 +734,7 @@ plugins: [
   {id:'canary',url:'https://github.com/garrytan/gstack',name:'/canary (gstack)',author:'garrytan',version:'2.0.0',enabled:true,new:true,desc:'Post-deploy canary monitoring. Watches live app for console errors, performance regressions, page failures. Periodic screenshots vs. pre-deploy baseline. Takes over after deploy.',category:'workflow',
    guide:'Invoke: `/canary` post-deploy. Uses browse daemon for periodic snapshots.\n\n**Flow:** `/qa` (pre-deploy) → deploy → `/canary` (post-deploy watch) → `/land-and-deploy` closes the loop.\n\n**Pair with:** chrome-devtools MCP for network + console capture.'},
   {id:'land-and-deploy',url:'https://github.com/garrytan/gstack',name:'/land-and-deploy (gstack)',author:'garrytan',version:'2.0.0',enabled:true,new:true,desc:'Merge PR → wait for CI → wait for deploy → verify prod health via canary. End-to-end ship workflow. Takes over after /ship creates the PR.',category:'workflow',
-   guide:'Invoke: `/land-and-deploy` after `/ship` or manual PR creation.\n\n**Flow:** merge → CI → deploy → `/canary` verification → report.\n\nDoes NOT auto-rollback — alerts + leaves decision to human. Useful for Spektrum/SmokHot/Qponko release gates.'},
+   guide:'Invoke: `/land-and-deploy` after `/ship` or manual PR creation.\n\n**Flow:** merge → CI → deploy → `/canary` verification → report.\n\nDoes NOT auto-rollback — alerts and leaves the call to a human. Useful for any release with a real audience downstream.'},
   {id:'frontend-ui-engineering',url:'https://github.com/addyosmani/agent-skills',name:'Frontend UI Engineering (addyosmani)',author:'Addy Osmani (Google)',version:'1.0',enabled:true,new:true,desc:'Builds production-quality UIs. Enforces design-system adherence, proper a11y, thoughtful interactions. Anti "AI-generic aesthetic" — aims for design-aware engineer output.',category:'creative',
    guide:'Triggers when building/modifying user-facing interfaces, components, layouts, state, or when output needs to feel production-quality.\n\nComplements (not replaces) `frontend-design` (Anthropic official) + `ui-ux-pro-max` + `design-audit`. Addy brings Chrome-team perspective: real DS adherence over vibes.\n\n**Source:** addyosmani/agent-skills (22k★).'},
   {id:'browser-testing-with-devtools',url:'https://github.com/addyosmani/agent-skills',name:'Browser Testing w/ DevTools (addyosmani)',author:'Addy Osmani (Google)',version:'1.0',enabled:true,new:true,desc:'Tests in real browsers via chrome-devtools-mcp. Inspect DOM, capture console errors, analyze network, profile perf, verify visual output with live runtime data.',category:'development',
@@ -836,7 +826,7 @@ skills: [
   // ──────────────────────────────────────────
   // React Native / Mobile (swmansion, installed 2026-04-28)
   // ──────────────────────────────────────────
-  {id:'rn-best-practices',url:'https://github.com/software-mansion/skills',name:'react-native-best-practices',author:'Software Mansion',version:'1.0',enabled:true,new:true,desc:'Best practices for animations, gestures, SVG, audio, multithreading, JSI, rich-text, on-device AI in React Native. Used for CasPosla + Qponko.',category:'creative',
+  {id:'rn-best-practices',url:'https://github.com/software-mansion/skills',name:'react-native-best-practices',author:'Software Mansion',version:'1.0',enabled:true,new:true,desc:'Best practices for animations, gestures, SVG, audio, multithreading, JSI, rich-text, on-device AI in React Native. Used on client RN work.',category:'creative',
    guide:'Comprehensive React Native expertise from Software Mansion (the team behind Reanimated, Gesture Handler, Reanimated, etc.).\n\n**Coverage:**\n- Animations (Reanimated 3 patterns)\n- Gestures (Gesture Handler 2)\n- SVG manipulation\n- Audio playback\n- Multithreading + JSI\n- Rich text rendering\n- On-device AI inference\n\n**Pro tip:** Best single source of RN best practices. Auto-triggers when working on mobile apps.'},
   {id:'rn-radon-mcp',url:'https://github.com/software-mansion/skills',name:'radon-mcp',author:'Software Mansion',version:'1.0',enabled:true,new:true,desc:'Radon IDE MCP integration for React Native debugging in Claude Code.',category:'development',
    guide:'Bridges Radon IDE with Claude Code via MCP for React Native debugging without leaving your terminal.\n\n**Use when:** debugging RN apps, inspecting state, profiling performance.'},
@@ -869,21 +859,21 @@ skills: [
   // Image Generation & Editing (installed 2026-05-14) — 7 skills cherry-picked from 9 candidates. Dropped: pilioai/skills/gpt-image-2 (3rd-party broker, no advantage over OpenAI direct), supercent-io/skills-template/image-generation (repo 404 / private). Three GPT Image 2 routes renamed (-openai / -runcomfy / -codex) to coexist.
   // ──────────────────────────────────────────
   {id:'gpt-image-2-openai',url:'https://github.com/gargantuax/openskills',name:'gpt-image-2-openai',author:'gargantuax',version:'1.0',enabled:true,new:true,desc:'Universal OpenAI-compatible GPT Image 2 route. Python entrypoint covering generations/edits/responses. Reads .env, works with any OpenAI-compatible gateway (OpenAI direct, OpenRouter, RunComfy compat endpoint). Has dry-run + --save-response for debugging.',category:'creative',
-   guide:'**Most flexible of the 3 GPT Image 2 routes.** Hits any OpenAI-compatible API by setting `OPENAI_BASE_URL` + `OPENAI_API_KEY`.\n\n**Commands:**\n- generations (text-to-image)\n- edits (mask + ref image)\n- responses (mixed text+image)\n\n**Flags:** `--dry-run` (validate payload before spending), `--save-response <path>` (capture raw JSON/SSE).\n\n**Requires:** Python + `.env` with OPENAI_API_KEY. Renamed from `gpt-image-2` so it coexists with `-runcomfy` and `-codex` variants.\n\n**Pair with:** `imagegen-frontend-mobile` (Qponko marketing mockups), `imagegen-frontend-web` (landing pages), `image-edit` (post-gen tweaks).'},
+   guide:'**Most flexible of the 3 GPT Image 2 routes.** Hits any OpenAI-compatible API by setting `OPENAI_BASE_URL` + `OPENAI_API_KEY`.\n\n**Commands:**\n- generations (text-to-image)\n- edits (mask + ref image)\n- responses (mixed text+image)\n\n**Flags:** `--dry-run` (validate payload before spending), `--save-response <path>` (capture raw JSON/SSE).\n\n**Requires:** Python + `.env` with OPENAI_API_KEY. Renamed from `gpt-image-2` so it coexists with `-runcomfy` and `-codex` variants.\n\n**Pair with:** `imagegen-frontend-mobile` (mobile marketing mockups), `imagegen-frontend-web` (landing pages), `image-edit` (post-gen tweaks).'},
   {id:'gpt-image-2-runcomfy',url:'https://github.com/agentspace-so/runcomfy-agent-skills',name:'gpt-image-2-runcomfy',author:'agentspace-so',version:'1.0',enabled:true,new:true,desc:'GPT Image 2 via RunComfy hosted Model API. Async REST, no OpenAI key needed — uses RunComfy credentials. Routes through local RunComfy CLI: `runcomfy run openai/gpt-image-2/text-to-image` or `/edit`.',category:'creative',
    guide:'**No-OpenAI-key route.** Uses RunComfy as a hosted broker. Best for: directive precision (embedded text, logos, signage, multilingual typography), brand-safe e-commerce/UI mockups, stable composition during iterative refinement.\n\n**Tradeoff:** Needs RunComfy account + RunComfy CLI installed locally.\n\n**Renamed from `gpt-image-2`** to coexist with `-openai` and `-codex` variants.\n\n**Sibling routes via RunComfy:** Flux 2 / Nano Banana Pro / Seedream — skill knows when to switch.'},
   {id:'gpt-image-2-codex',url:'https://github.com/agentspace-so/agent-skills',name:'gpt-image-2-codex',author:'agentspace-so',version:'1.0',enabled:true,new:true,desc:'GPT Image 2 via the user\'s ChatGPT Plus/Pro subscription — no per-image billing. Routes through local Codex CLI. Supports text-to-image, edit, style transfer, multi-reference composition.',category:'creative',
    guide:'**Zero-API-cost route IF user has ChatGPT Plus/Pro.** Calls GPT Image 2 through the local Codex CLI using the existing ChatGPT subscription instead of OpenAI API credits.\n\n**Requires:**\n1. ChatGPT Plus or Pro subscription\n2. Codex CLI installed AND authenticated locally\n\n**If Codex CLI is not set up, use `gpt-image-2-openai` (API key) or `gpt-image-2-runcomfy` (RunComfy creds) instead.**\n\n**Renamed from `gpt-image-2`** to coexist with the other two variants.'},
   {id:'image-edit',url:'https://github.com/agentspace-so/runcomfy-agent-skills',name:'image-edit',author:'agentspace-so',version:'1.0',enabled:true,new:true,desc:'Intent-routed image editor on RunComfy. Picks the right model from the catalog: Nano Banana Edit (batch ≤20, identity-preserving), GPT Image 2 Edit (multilingual text rewrite, multi-ref), Flux Kontext Pro (single-ref hi-fidelity local edit), Z-Image Turbo Inpaint (mask-driven region edit).',category:'creative',
-   guide:'**Smart router across 4 edit models** — picks the best one for your intent so you don\'t burn iterations on the wrong model.\n\n**Triggers:** "image edit", "edit image", "image-to-image", "i2i", "swap background", "remove object", "rewrite headline", or batch ask.\n\n**Best for:** post-generation polish, batch consistency, identity-preserving edits, mask inpainting.\n\n**Concrete use case (Qponko 2026-05-14):** regenerate the weak `wear-framed-*` graphics (current "watch" renders as black blob) + fix the 5 infographics (HTML→Chrome letterbox + cut text) + replace generic stick-figure memes with proper formats.'},
+   guide:'**Smart router across 4 edit models** — picks the best one for your intent so you don\'t burn iterations on the wrong model.\n\n**Triggers:** "image edit", "edit image", "image-to-image", "i2i", "swap background", "remove object", "rewrite headline", or batch ask.\n\n**Best for:** post-generation polish, batch consistency, identity-preserving edits, mask inpainting.\n\n**Concrete use case:** regenerating weak wear-frame product graphics, fixing infographics with letterbox/cut-text issues from HTML→Chrome pipelines, replacing generic stick-figure meme art with proper formats.'},
   {id:'imagegen-frontend-web',url:'https://github.com/leonxlnx/taste-skill',name:'imagegen-frontend-web',author:'leonxlnx',version:'1.0',enabled:true,new:true,desc:'Elite frontend image-direction for landing-page / marketing-site references. CRITICAL RULE: one separate horizontal image PER section (8-section page = 8 images). Enforces composition variety, varied CTAs/hero scales, narrative spine, consistent palette across all images.',category:'creative',
-   guide:'**Prompt-shaping skill, not a generator.** Overrides the default LLM tendency to collapse multi-section content into single consolidated images.\n\n**Outputs:** sequential horizontal images with labels ("Section 1 of 8: Hero", etc.) — ready to pass into `gpt-image-2-*` or external generator.\n\n**Best for:** Triardor website refresh, Qponko landing page, Berbernica/Spektrum marketing comps, any new client-site direction.\n\n**Default section counts:** landing page = 6, full template = 8.'},
+   guide:'**Prompt-shaping skill, not a generator.** Overrides the default LLM tendency to collapse multi-section content into single consolidated images.\n\n**Outputs:** sequential horizontal images with labels ("Section 1 of 8: Hero", etc.) — ready to pass into `gpt-image-2-*` or external generator.\n\n**Best for:** website refreshes, landing-page comps, marketing direction for any new client site.\n\n**Default section counts:** landing page = 6, full template = 8.'},
   {id:'imagegen-frontend-mobile',url:'https://github.com/leonxlnx/taste-skill',name:'imagegen-frontend-mobile',author:'leonxlnx',version:'1.0',enabled:true,new:true,desc:'Elite mobile app screen + flow image generation. iOS / Android / cross-platform. Premium phone-mockup framing, clean hierarchy, multi-screen consistency, controlled palettes, tasteful custom iconography. Image-only — does not write code.',category:'creative',
-   guide:'**Prompt-shaping skill for mobile UI mockups.** Default: each screen inside a subtle premium iPhone-style frame, but the app content is the focus.\n\n**Covers:** onboarding/auth, dashboards/profiles, settings, chat, ecommerce, fintech, health/fitness, productivity, social, utilities.\n\n**Concrete use cases:**\n- Qponko Play Store framed screenshots (current `phone-1..8.png` upgrade)\n- CasPosla marketing mockups\n- Future Triardor mobile app pitches\n\n**Pair with:** any `gpt-image-2-*` route for the actual render.'},
+   guide:'**Prompt-shaping skill for mobile UI mockups.** Default: each screen inside a subtle premium iPhone-style frame, but the app content is the focus.\n\n**Covers:** onboarding/auth, dashboards/profiles, settings, chat, ecommerce, fintech, health/fitness, productivity, social, utilities.\n\n**Concrete use cases:**\n- App-store framed screenshots\n- Marketing mockups for unreleased apps\n- Pitch decks featuring mobile products\n\n**Pair with:** any `gpt-image-2-*` route for the actual render.'},
   {id:'image',url:'https://github.com/vercel-labs/json-render',name:'image (json-render / Satori)',author:'vercel-labs',version:'1.0',enabled:true,new:true,desc:'Deterministic JSON→SVG/PNG renderer via Satori. Not generative AI — turns a structured JSON spec (frames, elements, props) into pixel-perfect output. From the json-render ecosystem (14.8K★).',category:'creative',
-   guide:'**Not LLM-generative — deterministic rendering.** Perfect when you need exact control: brand-correct colors, exact text content, repeatable layouts.\n\n**Best for:**\n- OG / social cards (1200×630)\n- Open Graph images for blog posts\n- Brand-consistent infographics (e.g. Qponko 5-card pipeline)\n- Marketing micro-graphics where prompt-based gen drifts off-brand\n\n**Concrete fit for Qponko (2026-05-14):** Replace the 5 infographics that rendered with letterbox bars + cut text via the HTML→Chrome pipeline. JSON spec → Satori = consistent, reproducible, zero text-cutoff bugs.\n\n**Core export:** `@json-render/image/render` → `renderToPng()`. Sibling renderers (react, core) for non-image outputs.'},
-  {id:'subagent-graph-extraction',url:'https://github.com/topoteretes/cognee',name:'Subagent-Driven Knowledge Graph Extraction',author:'local pattern',version:'1.0',enabled:true,new:true,desc:'In-session pattern: dispatch ~10 parallel Claude Code subagents over batched files, each returning controlled-vocab JSON {nodes, edges}. Aggregator dedupes + loads into cognee via add_data_points. Bypasses cognify() entirely — no Ladybug corruption risk, $0 on Max plan.',category:'memory',
-   guide:'**Pattern, not a tool.** Used 2026-05-18 to build the vault_3b dataset (316 entities + 471 edges over 75 high-value vault files) in ~3 min of parallel agent time.\n\n**Recipe:**\n1. Write `extract_schema.md` — controlled vocab (Project, Tool, Decision, …) + relation types + ID conventions (lowercase snake_case = vault slugs).\n2. Group files into ~10 topic-coherent batches of 4-11 files each.\n3. Spawn 10 background `general-purpose` agents in parallel via the Agent tool. Each reads schema + its batch + writes JSON to `/tmp/phase3b_out/batch_NN.json`.\n4. Aggregate, dedupe by id, drop dangling edges.\n5. Load via custom script using `graph_engine.add_nodes + index_data_points + graph_engine.add_edges` (the path `add_data_points` uses internally).\n\n**Why this beats LLM-cognify:**\n- $0 (Max plan quota) vs API spend\n- 3 min vs 10+ min hung runs with local LLMs\n- No corruption path: we never call `cognify()` so the Ladybug v40 bug is structurally impossible\n- Controlled vocab → deterministic structure, easy to query\n\n**Code:** `~/cognee/cognee-mcp/extract_schema.md` + `~/cognee/cognee-mcp/load_subagent_graph.py`.\n\n**See:** Memory System tab for full context.'},
+   guide:'**Not LLM-generative — deterministic rendering.** Perfect when you need exact control: brand-correct colors, exact text content, repeatable layouts.\n\n**Best for:**\n- OG / social cards (1200×630)\n- Open Graph images for blog posts\n- Brand-consistent infographics (e.g. N-card pipelines)\n- Marketing micro-graphics where prompt-based gen drifts off-brand\n\n**Concrete fit:** Replace infographics that render with letterbox bars + cut text via an HTML→Chrome pipeline. JSON spec → Satori = consistent, reproducible, zero text-cutoff bugs.\n\n**Core export:** `@json-render/image/render` → `renderToPng()`. Sibling renderers (react, core) for non-image outputs.'},
+  {id:'subagent-graph-extraction',url:'https://github.com/topoteretes/cognee',name:'Subagent-Driven Knowledge Graph Extraction',author:'local pattern',version:'1.0',enabled:true,new:true,desc:'In-session pattern: dispatch ~10 parallel Claude Code subagents over batched files, each returning controlled-vocab JSON {nodes, edges}. Aggregator dedupes + loads into Cognee via add_data_points. Bypasses cognify() entirely — no graph-DB migration risk, $0 on Max plan.',category:'memory',
+   guide:'**Pattern, not a tool.** Used to build a knowledge graph over a curated file set in ~3 minutes of parallel agent time, fully on the Max plan.\n\n**Recipe:**\n1. Write a short schema spec — controlled vocabulary (Project, Tool, Decision, Issue, …) + relation types + ID conventions (lowercase snake_case slugs).\n2. Group files into ~10 topic-coherent batches.\n3. Spawn ~10 background `general-purpose` agents in parallel via the Agent tool. Each reads the schema + its batch + writes JSON to a temp directory.\n4. Aggregate, dedupe by id, drop dangling edges.\n5. Load via a small script using `graph_engine.add_nodes + index_data_points + graph_engine.add_edges` (the path `add_data_points` uses internally).\n\n**Why this beats LLM-cognify in some setups:**\n- $0 (Max plan quota) vs API spend\n- ~3 min total vs hung runs with local LLMs\n- No corruption path: we never call `cognify()`, so any graph-DB migration bugs are structurally bypassed\n- Controlled vocab → deterministic structure, easy to query\n\n**See:** Memory System tab for the architecture this slots into.'},
 ],
 
 agents: [
@@ -1022,14 +1012,14 @@ rankings: [
    why:'The meta-capability. 48 specialist agents + parallel execution = 3-5x throughput on complex tasks. The tool that makes all other tools more powerful.',
    quickWin:'Launch 2-3 research agents in parallel instead of sequential searches. Use background mode for non-blocking work.'},
   {rank:6,name:'Memory System v2 (4-tier)',url:'https://kaizen-triardor.github.io/claude-arsenal/#memory',type:'Architecture',category:'memory',score:90,tier:'A',new:true,
-   why:'Custom umbrella architecture: MEMORY.md index (always loaded) + Obsidian vault (curated) + MemPalace (verbatim episodic) + Cognee (3 datasets: chunks, subagent graph, Gemini graph). Same slug joins all four stores. ~$54/mo in saved tokens.',
-   quickWin:'New session? MEMORY.md is already in context. Ask a cross-project question — GRAPH_COMPLETION via Gemini answers in 1-2s. See Memory System tab.'},
+   why:'Custom umbrella architecture: always-loaded index + curated Obsidian vault + MemPalace (verbatim episodic) + Cognee (3 datasets: chunks, subagent graph, cognified graph). Same slug joins all four stores. ~$54/mo equivalent saved.',
+   quickWin:'New session? The index is already in context. Ask a cross-cutting question — GRAPH_COMPLETION via cloud LLM answers in 1-2s. See Memory System tab.'},
   {rank:7,name:'MemPalace',url:'https://github.com/milla-jovovich/mempalace',type:'MCP',category:'memory',score:89,tier:'A',new:true,
-   why:'96.6% recall on historical conversations. Fills the critical gap between "what is true now" (file memory) and "why did we decide this" (verbatim history). Cross-project recall. Now autonomous via systemd hooks + 6h timer.',
-   quickWin:'Already mining every session. Ask: "What did we decide about Spektrum auth last month?" — palace returns the actual conversation chunk.'},
+   why:'96.6% recall on historical conversations. Fills the critical gap between "what is true now" (file memory) and "why did we decide this" (verbatim history). Now autonomous via Claude Code hooks + 6h systemd timer + hourly health watchdog.',
+   quickWin:'Already mining every session. Ask: "What did we decide about X last month?" — palace returns the actual conversation chunk.'},
   {rank:8,name:'Cognee (Tier 4)',url:'https://github.com/topoteretes/cognee',type:'MCP',category:'memory',score:88,tier:'A',new:true,
-   why:'Three coordinated datasets over the vault: chunks (vault_3a), subagent-built graph (vault_3b, 316 entities + 471 edges, $0), and Gemini-cognified graph (vault_full_gemini, NL queries). Daily systemd refresh on free tier.',
-   quickWin:'`cognee.search("Which projects use Vercel?", SearchType.GRAPH_COMPLETION)` — Gemini traverses the graph and returns a natural-language answer.'},
+   why:'Three coordinated datasets over the vault: chunks, a subagent-built graph, and a cloud-cognified graph for NL queries. Daily systemd refresh on a free-tier cloud LLM.',
+   quickWin:'`cognee.search("Which items share infrastructure X?", SearchType.GRAPH_COMPLETION)` — the cloud LLM traverses the graph and returns a natural-language answer.'},
   {rank:9,name:'Serena',url:'https://github.com/oraios/serena',type:'MCP',category:'development',score:87,tier:'A',
    why:'IDE-level semantic code intelligence. Navigate symbols, find references, rename across codebase. More precise than grep, more efficient than reading full files.',
    quickWin:'Use `find_symbol` + `get_symbols_overview` instead of reading entire files. Rename variables safely across the whole project.'},
