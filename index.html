@@ -106,6 +106,27 @@
   <!-- OVERVIEW -->
   <section id="tab-overview" class="hidden">
     <h2 class="text-2xl font-bold text-white section-title mb-6">Arsenal Overview</h2>
+    <!-- What's New banner — 2026-05-24 — Three.js / WebXR / AR -->
+    <div class="glass rounded-xl p-5 mb-6 border border-cyan-500/40" style="background:linear-gradient(135deg,rgba(6,182,212,0.12),rgba(6,182,212,0.02))">
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
+          <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-2 flex-wrap">
+            <h3 class="text-sm font-semibold text-white">What's New — 2026-05-24</h3>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-medium">3D / WebXR / AR</span>
+          </div>
+          <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside ml-1">
+            <li><strong class="text-white">Three.js skill pack (10 skills)</strong> from <a href="https://github.com/cloudai-x/threejs-skills" class="text-claude-400 hover:underline" target="_blank">cloudai-x/threejs-skills</a> — <code class="mono text-claude-400">threejs-fundamentals / geometry / materials / textures / lighting / animation / loaders (GLTF) / shaders (GLSL) / postprocessing / interaction</code>. Supply-chain scanned before install (pure docs, no scripts).</li>
+            <li><strong class="text-white">WebGPU + TSL (1)</strong> <code class="mono text-claude-400">webgpu-threejs-tsl</code> from <a href="https://github.com/dgreenheck/webgpu-claude-skill" class="text-claude-400 hover:underline" target="_blank">dgreenheck/webgpu-claude-skill</a> — node shaders in JS, GPU compute, postprocessing. (WebGPU AR support is thin → default AR builds to WebGL.)</li>
+            <li><strong class="text-white">WebXR via Context7</strong> — <code class="mono text-claude-400">/pmndrs/xr</code> (@react-three/xr) for AR/VR in React Three Fiber, plus three.js (14k snippets) + R3F live docs.</li>
+            <li><strong class="text-white">AR-in-browser reality:</strong> WebXR AR = Android Chrome only; iOS Safari has no WebXR → fall back to <code class="mono text-claude-400">&lt;model-viewer&gt;</code> + USDZ, or camera-CV (8th Wall — now open-source — / MindAR). Pipeline: <code class="mono text-claude-400">gltfjsx</code> + <code class="mono text-claude-400">@gltf-transform/cli</code>.</li>
+            <li><strong>Use case:</strong> complex 3D scene presented in AR, loaded in a browser via QR code. Host on HTTPS (Vercel); QR → URL.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <!-- What's New banner — 2026-05-18 — Memory System v2 complete -->
     <div class="glass rounded-xl p-5 mb-6 border border-purple-500/40" style="background:linear-gradient(135deg,rgba(168,85,247,0.12),rgba(168,85,247,0.02))">
       <div class="flex items-start gap-3">
@@ -744,6 +765,13 @@ plugins: [
 ],
 
 skills: [
+  // 3D / AR / WebXR
+  {id:'threejs-pack',url:'https://github.com/cloudai-x/threejs-skills',name:'Three.js skill pack (10)',desc:'threejs-fundamentals, threejs-geometry, threejs-materials, threejs-textures, threejs-lighting, threejs-animation, threejs-loaders (GLTF), threejs-shaders (GLSL), threejs-postprocessing (bloom/DOF/effects), threejs-interaction (raycast/controls). For 3D / WebGL / AR-in-browser work.',category:'creative',new:true,
+   guide:'10 model-side knowledge skills covering the whole Three.js surface. Installed 2026-05-24 from cloudai-x/threejs-skills; supply-chain scanned first (pure docs + example code, no install scripts, no network/eval).\n\n**Auto-trigger by topic:** scene setup → fundamentals; meshes/instancing → geometry; PBR/shader materials → materials; UV/envmaps → textures; lights/shadows/IBL → lighting; keyframe/skeletal/GLTF anim → animation; load .glb/HDR → loaders; custom GLSL → shaders; EffectComposer/bloom/DOF → postprocessing; raycast/controls → interaction.\n\n**Pair with:** context7 `/mrdoob/three.js` (14k snippets) + `/pmndrs/react-three-fiber` for live API. For asset prep: `npx @gltf-transform/cli optimize` + `npx gltfjsx`.\n\n**Full toolchain + iOS-vs-Android AR decision:** vault note reference_ar_webxr_toolchain.'},
+  {id:'webgpu-threejs-tsl',url:'https://github.com/dgreenheck/webgpu-claude-skill',name:'webgpu-threejs-tsl',author:'Dan Greenheck',desc:'WebGPU-enabled Three.js with TSL (Three.js Shading Language) — node shaders written in JS instead of GLSL/WGSL strings, GPU compute, post-processing effects, WGSL integration.',category:'creative',new:true,
+   guide:'Installed 2026-05-24 from dgreenheck/webgpu-claude-skill (MIT). Includes REFERENCE.md + docs + example .js (earth shader, particle system, post-processing) + templates.\n\n**Use for:** effect-heavy scenes, GPU compute (particles), TSL node materials.\n\n**Caveat:** WebGPU AR support is thinner than WebGL — for AR builds default the renderer to **WebGL**; use WebGPU/TSL for non-AR or where the target supports it.\n\n**Pair with:** threejs-shaders + threejs-postprocessing.'},
+  {id:'webxr-r3f',url:'https://github.com/pmndrs/xr',name:'WebXR (@react-three/xr) — via context7',desc:'AR/VR in React Three Fiber: createXRStore() → store.enterAR() → wrap in <XR>. Hit testing, anchors, hand tracking, controllers, DOM overlays. Not an installed skill — pull live docs via context7 /pmndrs/xr.',category:'creative',new:true,
+   guide:'@react-three/xr v6 turns an R3F app into a WebXR AR/VR experience.\n\n**Reality check:** WebXR `immersive-ar` runs on **Android Chrome + ARCore** only. **iOS Safari has no WebXR** → iOS fallback = `<model-viewer>` + USDZ (AR Quick Look), or a camera-CV engine (8th Wall — now open-source MIT — / MindAR) that works in any browser incl iOS.\n\n**Testing:** real AR needs a physical ARCore phone; WebXR *logic* can be emulated on desktop via IWER + the WebXR Emulator extension.\n\n**Docs:** context7 `/pmndrs/xr`. Full decision matrix: vault reference_ar_webxr_toolchain.'},
   // Development
   {id:'code-review',url:'https://github.com/anthropics/claude-code/tree/main/skills',name:'/code-review',desc:'Architectural and quality code review. Checks coding standards, SOLID principles, testability, performance.',category:'development',
    guide:'Performs comprehensive code review on specified files.\n\n**What it checks:**\n- Coding standard compliance\n- Architectural pattern adherence\n- SOLID principles violations\n- Testability concerns\n- Performance issues\n\n**Usage:** `/code-review` or `/code-review src/auth/`\n\n**When to use:** After completing a feature, before creating a PR. Also great for reviewing unfamiliar code.\n\n**Pro tip:** Combine with `/superpowers:requesting-code-review` for the full review workflow.'},
